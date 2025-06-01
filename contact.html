@@ -1,47 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - My Website</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact - My Website</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  #success-message {
+    display: none;
+    color: green;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+</style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">&#9776; Menu</label>
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="portfolio.html">Portfolio</a>
-    </div>
-  </nav>
+<nav class="navbar">
+  <input type="checkbox" id="menu-toggle" />
+  <label for="menu-toggle" class="menu-icon">&#9776; Menu</label>
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="portfolio.html">Portfolio</a>
+  </div>
+</nav>
 
-  <h1>Contact Me</h1>
+<h1>Contact Me</h1>
 
-  <section class="fade-in">
-    <h2>Get in Touch</h2>
-    <p>If you want to reach out, please use the form below or email me at <a href="mailto:youremail@example.com">youremail@example.com</a>.</p>
-    
-    <form action="https://formspree.io/f/manjwpga" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Your name" required />
+<section class="fade-in">
+  <h2>Get in Touch</h2>
+  <p>If you want to reach out, please use the form below or email me at <a href="mailto:youremail@example.com">youremail@example.com</a>.</p>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="_replyto" placeholder="Your email" required />
+  <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your name" required />
 
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="_replyto" placeholder="Your email" required />
 
-      <button type="submit">Send</button>
-    </form>
+    <label for="message"><p>Messaged:</p></label>
+    <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+
+    <button type="submit">Send</button>
     <div id="success-message">Thank you! Your message has been sent.</div>
-  </section>
+  </form>
+</section>
 
-  <footer>
-    <p>&copy; 2025 ramliktraining.page All rights reserved.</p>
-  </footer>
+<footer>
+  <p>&copy; 2025 ramlik.com. All rights reserved.</p>
+</footer>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const successMessage = document.getElementById('success-message');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop default form submission
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        // Clear the form
+        form.reset();
+        // Show the thank you message
+        successMessage.style.display = 'block';
+      } else {
+        alert('Oops! Something went wrong.');
+      }
+    }).catch(error => {
+      alert('Oops! There was a problem submitting your form.');
+    });
+  });
+</script>
 
 </body>
+</html>
