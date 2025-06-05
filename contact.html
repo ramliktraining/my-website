@@ -3,9 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
   <title>Contact - Ramlik's Website</title>
+  <meta name="description" content="Get in touch with Ramlik. Fill out the contact form to discuss your web project or ask any questions." />
+  <meta name="keywords" content="Ramlik, contact, web developer, form, email, reach out, web design" />
+  <meta name="author" content="Ramlik" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Contact Ramlik - Web Developer" />
+  <meta property="og:description" content="Reach out to Ramlik for web development, design, and collaboration inquiries." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ramliktraining.github.io/my-website/contact.html" />
+  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/logo.png" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Inline style for message -->
   <style>
     #success-message {
       display: none;
@@ -17,13 +34,16 @@
 </head>
 <body>
 
+  <!-- Dynamic Header -->
   <div id="header-placeholder"></div>
 
+  <!-- Page Title -->
   <h1>Contact Me</h1>
 
+  <!-- Contact Section -->
   <section class="fade-in">
     <h2>Get in Touch</h2>
-    <p>If you want to reach out, please use the form below or email me at <a href="mailto:noemail@now.uaes">noemail@now.uaes</a>.</p>
+    <p>If you want to reach out, please use the form below or email me directly at <a href="mailto:noemail@now.uaes">noemail@now.uaes</a>.</p>
 
     <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST">
       <label for="name">Name:</label>
@@ -32,7 +52,7 @@
       <label for="email">Email:</label>
       <input type="email" id="email" name="_replyto" placeholder="Your email" required />
 
-      <label for="message"><p></p>Message:</p></label>
+      <label for="message">Message:</label>
       <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
 
       <button type="submit">Send</button>
@@ -40,9 +60,11 @@
     </form>
   </section>
 
+  <!-- Dynamic Footer -->
   <div id="footer-placeholder"></div>
-  <script src="load-header-footer.js"></script>
+  <script src="load-header-footer.js" defer></script>
 
+  <!-- Form Submission Script -->
   <script>
     const form = document.getElementById('contact-form');
     const successMessage = document.getElementById('success-message');
