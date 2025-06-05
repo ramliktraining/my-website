@@ -3,34 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - My Website</title>
+  <title>Portfolio - Ramlik's Website</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <nav class="navbar">
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">&#9776; Menu</label>
-    <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="portfolio.html">Portfolio</a>
-    </div>
-  </nav>
+  <div id="header-placeholder"></div>
 
   <h1>My Portfolio</h1>
-<section class="fade-in">
-  <section class="gallery">
+
+  <section class="gallery fade-in">
     <img src="images/Razin1.png" alt="Razin 1" />
     <img src="images/Razin2.png" alt="Razin 2" />
     <img src="images/Razin3.png" alt="Razin 3" />
     <img src="images/Razin4.png" alt="Razin 4" />
   </section>
 
-  <footer>
-    <p>&copy; 2025 ramliktraining.page All rights reserved.</p>
-  </footer>
+  <div id="lightbox">
+    <span id="lightbox-prev">&#10094;</span>
+    <img src="" alt="Enlarged image" />
+    <span id="lightbox-next">&#10095;</span>
+  </div>
+
+  <div id="footer-placeholder"></div>
+  <script src="load-header-footer.js"></script>
+
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = galleryImages[index].src;
+      lightboxImg.alt = galleryImages[index].alt;
+      currentIndex = index;
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        showLightbox(index);
+      });
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImg) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      showLightbox(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      showLightbox(currentIndex);
+    });
+  </script>
 
 </body>
 </html>
