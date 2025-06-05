@@ -3,32 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
   <title>Portfolio - Ramlik's Website</title>
+  <meta name="description" content="Explore Ramlik's portfolio including branding, UI/UX, and web design projects. Discover recent work and creative solutions." />
+  <meta name="keywords" content="Ramlik, portfolio, design, branding, UI/UX, web development, HTML, CSS" />
+  <meta name="author" content="Ramlik" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Portfolio - Ramlik's Work Showcase" />
+  <meta property="og:description" content="View selected projects by Ramlik including branding, website UI, and creative web solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ramliktraining.github.io/my-website/portfolio.html" />
+  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/Razin1.png" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+  <!-- Dynamic Header -->
   <div id="header-placeholder"></div>
 
-  <h1>My Portfolio</h1>
+  <!-- Main Heading -->
+  <main>
+    <h1>My Portfolio</h1>
 
-  <section class="gallery fade-in">
-    <img src="images/Razin1.png" alt="Razin 1" />
-    <img src="images/Razin2.png" alt="Razin 2" />
-    <img src="images/Razin3.png" alt="Razin 3" />
-    <img src="images/Razin4.png" alt="Razin 4" />
-  </section>
+    <!-- Gallery Title -->
+    <h2>Selected Projects</h2>
 
+    <!-- Gallery Section -->
+    <section class="gallery fade-in">
+      <img src="images/Razin1.png" alt="Branding design project - Razin 1" />
+      <img src="images/Razin2.png" alt="Website homepage layout - Razin 2" />
+      <img src="images/Razin3.png" alt="Mobile UI concept - Razin 3" />
+      <img src="images/Razin4.png" alt="Minimalist logo exploration - Razin 4" />
+    </section>
+  </main>
+
+  <!-- Lightbox -->
   <div id="lightbox">
     <span id="lightbox-prev">&#10094;</span>
     <img src="" alt="Enlarged image" />
     <span id="lightbox-next">&#10095;</span>
   </div>
 
+  <!-- Dynamic Footer -->
   <div id="footer-placeholder"></div>
-  <script src="load-header-footer.js"></script>
+  <script src="load-header-footer.js" defer></script>
 
+  <!-- Lightbox Script -->
   <script>
     const galleryImages = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
