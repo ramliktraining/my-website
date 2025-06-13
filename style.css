@@ -349,3 +349,24 @@ footer {
   color: #007BFF;
   margin-bottom: 15px;
 }
+
+.stats {
+  text-align: center;
+  padding: 40px 20px;
+}
+.counter-box {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+.counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007BFF;
+}
+.counter + p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
