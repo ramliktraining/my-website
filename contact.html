@@ -4,58 +4,100 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Performance: Preconnect for Fonts and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Optional preload (if you use fonts locally or custom icons) -->
+  <link rel="preload" href="style.min.css" as="style">
+  
   <!-- SEO Meta Tags -->
   <title>Contact - Ramlik's Website</title>
-  <meta name="description" content="Get in touch with Ramlik for inquiries, collaborations, or project proposals. Let's work together!" />
-  <meta name="keywords" content="contact, Ramlik, web developer, collaboration, inquiries, proposals" />
+  <meta name="description" content="Get in touch with Ramlik. Fill out the contact form to discuss your web project or ask any questions." />
+  <meta name="keywords" content="Ramlik, contact, web developer, form, email, reach out, web design" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph Tags -->
-  <meta property="og:title" content="Contact Ramlik - Get in Touch for Web Projects" />
-  <meta property="og:description" content="Reach out to Ramlik to discuss your web development needs, projects, or collaboration opportunities." />
+  <meta property="og:title" content="Contact Ramlik - Web Developer" />
+  <meta property="og:description" content="Reach out to Ramlik for web development, design, and collaboration inquiries." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ramliktraining.github.io/my-website/contact.html" />
   <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/logo.png" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Inline style for message -->
+  <style>
+    #success-message {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
 
   <!-- Dynamic Header -->
   <div id="header-placeholder"></div>
 
-  <!-- Main Content -->
-  <main>
-    <h1>Contact Me</h1>
+  <!-- Page Title -->
+  <h1>Contact Me</h1>
 
-    <!-- Contact Form -->
-    <form action="#" method="post">
+  <!-- Contact Section -->
+  <section class="fade-in">
+    <h2>Get in Touch</h2>
+    <p>If you want to reach out, please use the form below or email me directly at <a href="mailto:pleaseuse@form.now">pleaseuse@form.now</a>.</p>
+
+    <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" placeholder="Your name" required />
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" name="_replyto" placeholder="Your email" required />
 
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" required></textarea>
+      <label for="message"><p>Message:</p></label>
+      <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
 
-      <button type="submit" class="cta-button">Send Message</button>
+      <button type="submit">Send</button>
+      <div id="success-message">Thank you! Your message has been sent.</div>
     </form>
-
-    <!-- Social Media Links -->
-    <section class="social-links">
-      <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-      <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-    </section>
-  </main>
+  </section>
 
   <!-- Dynamic Footer -->
   <div id="footer-placeholder"></div>
   <script src="load-header-footer.js" defer></script>
+
+  <!-- Form Submission Script -->
+  <script>
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          successMessage.style.display = 'block';
+        } else {
+          alert('Oops! Something went wrong.');
+        }
+      }).catch(error => {
+        alert('Oops! There was a problem submitting your form.');
+      });
+    });
+  </script>
 
 </body>
 </html>
