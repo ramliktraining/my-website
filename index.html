@@ -25,19 +25,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
- 
+
   <!-- ✅ PWA Manifest -->
   <link rel="manifest" href="manifest.json" />
-  
-  <!-- ✅ Site Title -->
-  <title>Home - Ramlik's Website</title>
+
+  <!-- ✅ AOS Animate On Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <!-- ✅ CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✅ Google Site Verification (optional for Search Console) -->
+  <!-- ✅ Google Site Verification -->
   <meta name="google-site-verification" content="Ck9f_dGxe-1CxvMNKb00WlanalJBVyIeYNDd15vLv4g" />
+
+  <title>Home - Ramlik's Website</title>
 </head>
 <body>
 
@@ -45,14 +47,14 @@
   <div id="header-placeholder"></div>
 
   <!-- ✅ Hero Section -->
-  <header class="hero">
+  <header class="hero" data-aos="fade-down">
     <h1 class="hero-title">Welcome to Ramlik's Website</h1>
     <p class="hero-subtitle">Creating engaging web experiences</p>
   </header>
 
   <!-- ✅ Main Content -->
   <main>
-    <section class="fade-in">
+    <section class="fade-in" data-aos="fade-up">
       <h2>Introduction</h2>
       <p>
         Welcome! This is the homepage of my website.
@@ -62,7 +64,7 @@
       </p>
     </section>
 
-    <section class="fade-in">
+    <section class="fade-in" data-aos="zoom-in">
       <h2>Latest News</h2>
       <p>Check out my <a href="services.html">services</a> to see how I can help with your web projects.</p>
     </section>
@@ -71,17 +73,26 @@
   <!-- ✅ Dynamic Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- ✅ Load Header & Footer Script (deferred for performance) -->
+  <!-- ✅ Load Header & Footer Script -->
   <script src="load-header-footer.js" defer></script>
 
-  <!-- ✅ Register Service Worker for PWA -->
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(reg => console.log('SW registered:', reg.scope))
-      .catch(err => console.error('SW registration failed:', err));
-  }
-</script>
+  <!-- ✅ AOS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+
+  <!-- ✅ Service Worker for PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('SW registered:', reg.scope))
+        .catch(err => console.error('SW registration failed:', err));
+    }
+  </script>
 
 </body>
 </html>
