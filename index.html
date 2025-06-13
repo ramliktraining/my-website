@@ -48,7 +48,7 @@
 
   <!-- ✅ Hero Section -->
   <header class="hero" data-aos="fade-down">
-    <h1 class="hero-title">Welcome to Ramlik's Website</h1>
+    <h1 class="hero-title"><span class="typewriter-text"></span></h1>
     <p class="hero-subtitle">Creating engaging web experiences</p>
   </header>
 
@@ -68,6 +68,16 @@
       <h2>Latest News</h2>
       <p>Check out my <a href="services.html">services</a> to see how I can help with your web projects.</p>
     </section>
+
+    <!-- ✅ Animated Counter Section -->
+    <section class="fade-in stats" data-aos="fade-up">
+      <h2>My Achievements</h2>
+      <div class="counter-box">
+        <div><span class="counter" data-target="25">0</span><p>Projects</p></div>
+        <div><span class="counter" data-target="12">0</span><p>Clients</p></div>
+        <div><span class="counter" data-target="5">0</span><p>Years Experience</p></div>
+      </div>
+    </section>
   </main>
 
   <!-- ✅ Dynamic Footer -->
@@ -76,12 +86,76 @@
   <!-- ✅ Load Header & Footer Script -->
   <script src="load-header-footer.js" defer></script>
 
-  <!-- ✅ AOS Script -->
+  <!-- ✅ AOS Animation Script -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- ✅ Typewriter Effect Script -->
+  <script>
+    const phrases = [
+      "Welcome to Ramlik's Website",
+      "Creating engaging web experiences",
+      "Let's build something great!"
+    ];
+    const textElement = document.querySelector(".typewriter-text");
+    let phraseIndex = 0;
+    let letterIndex = 0;
+    let currentPhrase = "";
+    let isDeleting = false;
+
+    function type() {
+      currentPhrase = phrases[phraseIndex];
+      if (isDeleting) {
+        textElement.textContent = currentPhrase.substring(0, letterIndex--);
+      } else {
+        textElement.textContent = currentPhrase.substring(0, letterIndex++);
+      }
+
+      if (!isDeleting && letterIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+      } else if (isDeleting && letterIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(type, 300);
+      } else {
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", type);
+  </script>
+
+  <!-- ✅ Animated Counter Script -->
+  <script>
+    const counters = document.querySelectorAll(".counter");
+    const speed = 200;
+
+    counters.forEach(counter => {
+      const update = () => {
+        const target = +counter.getAttribute("data-target");
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = current + increment;
+          setTimeout(update, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      const onScroll = () => {
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          update();
+          window.removeEventListener("scroll", onScroll);
+        }
+      };
+
+      window.addEventListener("scroll", onScroll);
     });
   </script>
 
