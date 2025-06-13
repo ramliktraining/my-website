@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Performance: Preconnect for Fonts and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- Optional preload (if you use fonts locally or custom icons) -->
+  <link rel="preload" href="style.min.css" as="style">
+
   <!-- SEO Meta Tags -->
   <title>Portfolio - Ramlik's Website</title>
   <meta name="description" content="Explore Ramlik's portfolio including branding, UI/UX, and web design projects. Discover recent work and creative solutions." />
@@ -43,58 +51,9 @@
     </section>
   </main>
 
-  <!-- Lightbox -->
-  <div id="lightbox">
-    <span id="lightbox-prev">&#10094;</span>
-    <img src="" alt="Enlarged image" />
-    <span id="lightbox-next">&#10095;</span>
-  </div>
-
   <!-- Dynamic Footer -->
   <div id="footer-placeholder"></div>
   <script src="load-header-footer.js" defer></script>
-
-  <!-- Lightbox Script -->
-  <script>
-    const galleryImages = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const prevBtn = document.getElementById('lightbox-prev');
-    const nextBtn = document.getElementById('lightbox-next');
-
-    let currentIndex = 0;
-
-    function showLightbox(index) {
-      lightbox.style.display = 'flex';
-      lightboxImg.src = galleryImages[index].src;
-      lightboxImg.alt = galleryImages[index].alt;
-      currentIndex = index;
-    }
-
-    galleryImages.forEach((img, index) => {
-      img.addEventListener('click', () => {
-        showLightbox(index);
-      });
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === lightboxImg) {
-        lightbox.style.display = 'none';
-      }
-    });
-
-    prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-      showLightbox(currentIndex);
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      currentIndex = (currentIndex + 1) % galleryImages.length;
-      showLightbox(currentIndex);
-    });
-  </script>
 
 </body>
 </html>
