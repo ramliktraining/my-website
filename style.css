@@ -360,4 +360,9 @@ footer {
   font-size: 1rem;
   margin-top: 10px;
 }
+html, body {
+  height: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* important for smooth iOS scroll */
+}
 
