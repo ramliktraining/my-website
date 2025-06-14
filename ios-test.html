@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iOS PWA Test - Refresh Button</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .box {
+      margin: 20px auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      background-color: #f9f9f9;
+    }
+    #ios-refresh {
+      display: none;
+      margin-top: 30px;
+    }
+    #ios-refresh button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>iOS PWA Detection Test</h1>
+  <div class="box">
+    <p><strong>User Agent:</strong></p>
+    <p id="ua-text"></p>
+
+    <p><strong>Standalone Mode:</strong> <span id="standalone-mode">Checking...</span></p>
+
+    <div id="ios-refresh">
+      <p>This is a standalone iOS PWA.</p>
+      <button onclick="location.reload()">🔄 Refresh Page</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isIOS = /iPad|iPhone|iPod/.test(ua);
+      const isStandalone = ('standalone' in window.navigator) && window.navigator.standalone;
+
+      document.getElementById("ua-text").textContent = ua;
+      document.getElementById("standalone-mode").textContent = isStandalone ? "Yes ✅" : "No ❌";
+
+      if (isIOS && isStandalone) {
+        document.getElementById("ios-refresh").style.display = "block";
+      }
+    });
+  </script>
+
+</body>
+</html>
