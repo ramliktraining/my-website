@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => console.error("Header load error:", err));
 
+  // ✅ Attach scroll event after header is inserted
+      window.addEventListener("scroll", function () {
+        const scrollBar = document.getElementById("scroll-progress-bar");
+        if (!scrollBar) return;
+        const totalHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollProgress = (window.scrollY / totalHeight) * 100;
+        scrollBar.style.width = scrollProgress + "%";
+      });
+    });
+
+
   // Load footer with error handling
   fetch("footer.html")
     .then((res) => {
