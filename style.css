@@ -186,16 +186,7 @@ footer {
   color: #007BFF;
 }
 
-/* Animate fade-in */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation-fill-mode: forwards;
-  animation-name: fadeInUp;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-delay: 0.3s;
-}
+
 
 /* Lightbox overlay */
 #lightbox {
