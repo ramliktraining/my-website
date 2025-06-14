@@ -43,14 +43,20 @@
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     function isIosPWA() {
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
-      return isIOS && isInStandaloneMode;
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isIOS = /iPad|iPhone|iPod/.test(ua);
+      const isStandalone = ('standalone' in window.navigator) && window.navigator.standalone;
+      console.log("iOS:", isIOS, "Standalone:", isStandalone);
+      return isIOS && isStandalone;
     }
 
+    const refreshDiv = document.getElementById("ios-refresh");
     if (isIosPWA()) {
-      const btn = document.getElementById("ios-refresh");
-      if (btn) btn.style.display = "block";
+      console.log("✅ Showing refresh button for iOS PWA");
+      if (refreshDiv) refreshDiv.style.display = "block";
+    } else {
+      console.log("❌ Not iOS PWA, refresh button hidden");
     }
   });
 </script>
+
