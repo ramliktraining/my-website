@@ -369,24 +369,46 @@ html, body {
 .parallax-section {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
+  overflow: hidden;
 }
 
-.parallax-section h2 {
-  font-size: 2.5rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 15px 25px;
+@supports not (-webkit-overflow-scrolling: touch) {
+  /* Only for devices that support background-attachment */
+  .parallax-section {
+    background-attachment: fixed;
+  }
+}
+
+.parallax-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
   border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
+.parallax-overlay h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
 
+.parallax-overlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
+.parallax-overlay ul li {
+  margin: 6px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
