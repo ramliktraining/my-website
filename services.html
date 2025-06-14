@@ -4,39 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Preconnect to Google Fonts and Font Awesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-
-  <!-- SEO Meta Tags -->
+  <!-- ✅ SEO Meta Tags -->
   <title>Services - Ramlik's Website</title>
   <meta name="description" content="Explore the web development, UI/UX design, and SEO services offered by Ramlik to build modern, responsive, and optimized websites." />
   <meta name="keywords" content="Ramlik, services, web development, UI/UX, SEO, responsive design, HTML, CSS, JavaScript" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph Tags -->
+  <!-- ✅ Open Graph Tags -->
   <meta property="og:title" content="Services by Ramlik - Web Development, Design, SEO" />
   <meta property="og:description" content="Discover the professional web services offered by Ramlik including frontend development, UI/UX design, and SEO." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ramliktraining.github.io/my-website/services.html" />
-  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/logo.png" />
+  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/social-share.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ramliktraining.github.io/my-website/images/social-share.png" />
 
-  <!-- Styles -->
+  <!-- ✅ Performance: Preconnects -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+  <!-- ✅ PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- ✅ AOS Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <!-- ✅ Stylesheets -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Dynamic Header -->
+  <!-- ✅ Header -->
   <div id="header-placeholder"></div>
 
-  <!-- Main Content -->
+  <!-- ✅ Main Content -->
   <main>
-    <h1 class="fade-in">My Services</h1>
+    <h1 data-aos="fade-down">My Services</h1>
 
-    <section class="services fade-in">
+    <section class="services fade-in" data-aos="fade-up">
       <div class="service-item">
         <i class="fas fa-code service-icon"></i>
         <h3>Web Development</h3>
@@ -54,16 +64,31 @@
       </div>
     </section>
 
-    <section class="cta-banner fade-in">
+    <section class="cta-banner fade-in" data-aos="zoom-in">
       <h2>Want to work together?</h2>
       <p>If you're interested in these services, <a href="contact.html">contact me</a> to bring your ideas to life!</p>
       <a href="contact.html" class="cta-button">Get in Touch</a>
     </section>
   </main>
 
-  <!-- Dynamic Footer -->
+  <!-- ✅ Dynamic Footer -->
   <div id="footer-placeholder"></div>
+
+  <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- ✅ PWA: Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('Service Worker registered:', reg.scope))
+        .catch(err => console.error('Service Worker registration failed:', err));
+    }
+  </script>
 
 </body>
 </html>
