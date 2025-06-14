@@ -1,4 +1,4 @@
-<!-- Google Analytics (GA4) -->
+<!-- ✅ Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSTB4R5VQP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -7,13 +7,16 @@
   gtag('config', 'G-BSTB4R5VQP');
 </script>
 
-<!-- Icons for All Platforms -->
+<!-- ✅ Icons for All Platforms -->
 <link rel="apple-touch-icon" href="images/icon-192.png" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
 
-<!-- Navigation -->
+<!-- ✅ Scroll Progress Bar -->
+<div id="scroll-progress-bar"></div>
+
+<!-- ✅ Navigation -->
 <nav class="navbar">
   <!-- Optional Logo -->
   <!--
@@ -39,7 +42,7 @@
   </button>
 </div>
 
-<!-- ✅ iOS PWA Detection Script (fixed to wait for DOM) -->
+<!-- ✅ iOS PWA Detection Script -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     function isIosPWA() {
@@ -60,3 +63,12 @@
   });
 </script>
 
+<!-- ✅ Scroll Progress Bar Script -->
+<script>
+  window.addEventListener("scroll", function () {
+    const scrollBar = document.getElementById("scroll-progress-bar");
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollProgress = (window.scrollY / totalHeight) * 100;
+    scrollBar.style.width = scrollProgress + "%";
+  });
+</script>
