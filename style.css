@@ -368,7 +368,6 @@ html, body {
 
 .parallax-section {
   position: relative;
-  <!-- background-image: url("images/parallax-bg.jpg"); /* Replace with your image */ -->
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
   background-attachment: fixed;
   background-position: center;
@@ -388,5 +387,6 @@ html, body {
   padding: 15px 25px;
   border-radius: 10px;
 }
+
 
 
