@@ -123,6 +123,19 @@
   <!-- ✅ Load Header & Footer Script -->
   <script src="load-header-footer.js" defer></script>
 
+  <!-- ✅ iOS Refresh Detection -->
+  <script>
+  window.addEventListener('load', function () {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
+    const isInStandaloneMode = window.navigator.standalone === true;
+
+    if (isIOS && isInStandaloneMode) {
+      const refreshBtn = document.getElementById('ios-refresh');
+      if (refreshBtn) refreshBtn.style.display = 'block';
+    }
+  });
+  </script>
+
   <!-- ✅ AOS Animation Script -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
