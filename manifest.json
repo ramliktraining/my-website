@@ -1,7 +1,7 @@
 {
   "name": "Razin's Website",
   "short_name": "Razin",
-  "start_url": "index.html",
+  "start_url": "/my-website/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007BFF",
