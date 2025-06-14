@@ -7,13 +7,9 @@
   gtag('config', 'G-BSTB4R5VQP');
 </script>
 
-<!-- Fallback ICO favicon (for older/default browsers) -->
+<!-- Icons for All Platforms -->
 <link rel="apple-touch-icon" href="images/icon-192.png" />
-
-<!-- Apple Touch Icon for iOS/Android Home Screens -->
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-
-<!-- Android Home Screen Icons -->
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 
@@ -35,3 +31,23 @@
     <a href="contact.html">Contact</a>
   </div>
 </nav>
+
+<!-- ✅ iOS Refresh Button (Only shows for iOS PWA users) -->
+<div id="ios-refresh" style="display: none; text-align: center; margin: 15px 0;">
+  <button onclick="location.reload()" style="padding: 8px 16px; font-size: 16px;">
+    🔄 Refresh Page
+  </button>
+</div>
+
+<!-- ✅ iOS PWA Detection Script -->
+<script>
+  function isIosPWA() {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+    return isIOS && isInStandaloneMode;
+  }
+
+  if (isIosPWA()) {
+    document.getElementById('ios-refresh').style.display = 'block';
+  }
+</script>
