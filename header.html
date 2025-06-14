@@ -2,7 +2,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BSTB4R5VQP"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
   gtag('config', 'G-BSTB4R5VQP');
 </script>
@@ -39,15 +39,18 @@
   </button>
 </div>
 
-<!-- ✅ iOS PWA Detection Script -->
+<!-- ✅ iOS PWA Detection Script (fixed to wait for DOM) -->
 <script>
-  function isIosPWA() {
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
-    return isIOS && isInStandaloneMode;
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    function isIosPWA() {
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+      return isIOS && isInStandaloneMode;
+    }
 
-  if (isIosPWA()) {
-    document.getElementById('ios-refresh').style.display = 'block';
-  }
+    if (isIosPWA()) {
+      const btn = document.getElementById("ios-refresh");
+      if (btn) btn.style.display = "block";
+    }
+  });
 </script>
