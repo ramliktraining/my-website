@@ -13,3 +13,11 @@ self.addEventListener('fetch', event => {
     fetch(event.request).catch(() => new Response('You are offline.'))
   );
 });
+
+self.addEventListener('install', function(e) {
+  console.log('Service Worker installed');
+});
+
+self.addEventListener('fetch', function(e) {
+  e.respondWith(fetch(e.request));
+});
