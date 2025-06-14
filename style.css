@@ -372,32 +372,28 @@ html, body {
   overflow: hidden;
 }
 
-.parallax-section::before {
-  content: "";
-  background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: scale(1.1);
-  z-index: 0;
-}
-
-.parallax-section-content {
+ .parallax-section {
   position: relative;
-  z-index: 1;
+  background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  padding: 40px 20px;
   text-align: center;
 }
 
-.parallax-section-content h2 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+.parallax-section h2 {
+  font-size: 2.5rem;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 15px 25px;
+  border-radius: 10px;
 }
+
 
 .parallax-section-content p {
   font-size: 1.1rem;
