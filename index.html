@@ -47,6 +47,9 @@
   <title>Home - Ramlik's Website</title>
 </head>
 <body>
+
+  <!-- ✅ Scroll Progress Bar -->
+  <div id="scroll-progress-bar"></div>
   
   <!-- ✅ Dynamic Header -->
   <div id="header-placeholder"></div>
@@ -242,6 +245,16 @@
         .catch(err => console.error('SW registration failed:', err));
     }
   </script>
+
+  <!-- ✅ Scroll Progress Bar Script -->
+<script>
+  window.addEventListener("scroll", () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (scrollTop / scrollHeight) * 100;
+    document.getElementById("scroll-progress-bar").style.width = scrollPercent + "%";
+  });
+</script>
   
 </body>
 </html>
