@@ -411,14 +411,27 @@ html, body {
   margin: 0 auto 8px;
 }
 
-/* ✅ Scroll Progress Bar */
+/* ✅ Scroll Progress Bar with Shadow and Glow Animation */
 #scroll-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 0%;
-  height: 4px;
+  height: 5px;
   background: #007BFF;
   z-index: 9999;
-  transition: width 0.2s ease-out;
+  transition: width 0.25s ease-out;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
+  animation: pulse-glow 2s infinite alternate;
 }
+
+/* ✅ Pulse Glow Animation */
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 2px 12px rgba(0, 123, 255, 0.9);
+  }
+}
+
