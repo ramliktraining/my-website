@@ -4,33 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Performance: Preconnect for Fonts and Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-
-  <!-- Optional preload (if you use fonts locally or custom icons) -->
-  <link rel="preload" href="style.min.css" as="style">
-  
-  <!-- SEO Meta Tags -->
+  <!-- ✅ SEO Meta Tags -->
   <title>Contact - Ramlik's Website</title>
   <meta name="description" content="Get in touch with Ramlik. Fill out the contact form to discuss your web project or ask any questions." />
   <meta name="keywords" content="Ramlik, contact, web developer, form, email, reach out, web design" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Open Graph Tags -->
+  <!-- ✅ Open Graph Meta Tags -->
   <meta property="og:title" content="Contact Ramlik - Web Developer" />
   <meta property="og:description" content="Reach out to Ramlik for web development, design, and collaboration inquiries." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ramliktraining.github.io/my-website/contact.html" />
   <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/logo.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Styles -->
+  <!-- ✅ Performance Optimization -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- ✅ AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <!-- ✅ Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Inline style for message -->
+  <!-- ✅ Inline Style for Message -->
   <style>
     #success-message {
       display: none;
@@ -42,42 +46,52 @@
 </head>
 <body>
 
-  <!-- Dynamic Header -->
+  <!-- ✅ Dynamic Header -->
   <div id="header-placeholder"></div>
 
-  <!-- Page Title -->
-  <h1>Contact Me</h1>
+  <!-- ✅ Page Title -->
+  <main>
+    <h1 data-aos="fade-down">Contact Me</h1>
 
-  <!-- Contact Section -->
-  <section class="fade-in">
-    <h2>Get in Touch</h2>
-    <p>If you want to reach out, please use the form below or email me directly at <a href="mailto:pleaseuse@form.now">pleaseuse@form.now</a>.</p>
+    <!-- ✅ Contact Section -->
+    <section class="fade-in" data-aos="fade-up">
+      <h2>Get in Touch</h2>
+      <p>If you want to reach out, please use the form below or email me directly at <a href="mailto:pleaseuse@form.now">pleaseuse@form.now</a>.</p>
 
-    <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Your name" required />
+      <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST" novalidate>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required />
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="_replyto" placeholder="Your email" required />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="_replyto" placeholder="Your email" required />
 
-      <label for="message"><p>Message:</p></label>
-      <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
 
-      <button type="submit">Send</button>
-      <div id="success-message">Thank you! Your message has been sent.</div>
-    </form>
-  </section>
+        <button type="submit">Send</button>
+        <div id="success-message">Thank you! Your message has been sent.</div>
+      </form>
+    </section>
+  </main>
 
-  <!-- Dynamic Footer -->
+  <!-- ✅ Dynamic Footer -->
   <div id="footer-placeholder"></div>
+
+  <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
 
-  <!-- Form Submission Script -->
+  <!-- ✅ Animate On Scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+
+  <!-- ✅ Form Submit Handler -->
   <script>
     const form = document.getElementById('contact-form');
     const successMessage = document.getElementById('success-message');
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
       event.preventDefault();
 
       const formData = new FormData(form);
