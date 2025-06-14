@@ -448,4 +448,47 @@ html, body {
   box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
   animation: pulse-glow 2s infinite alternate;
 }
+/* ✅ Card Hover Zoom & Shadow Pop */
+.service-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+/* ✅ Icon Rotate + Glow */
+.service-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.service-icon:hover {
+  transform: rotate(10deg);
+  color: #0056b3;
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+/* ✅ Button Hover Slide Effect */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 123, 255, 0.1);
+  transition: left 0.3s ease-in-out;
+  z-index: 0;
+}
+
+.cta-button:hover::after {
+  left: 0;
+}
+
+.cta-button:hover {
+  color: #0056b3;
+}
 
