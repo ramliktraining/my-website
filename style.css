@@ -387,11 +387,9 @@ html, body {
   text-align: center;
 }
 
-.parallax-section h2 {
+.parallax-section-content h2 {
   font-size: 2.5rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 15px 25px;
-  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 
