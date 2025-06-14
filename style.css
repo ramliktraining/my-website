@@ -1,3 +1,4 @@
+/* ✅ Base Body Styles */
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -5,6 +6,7 @@ body {
   color: #333;
 }
 
+/* ✅ Navigation Styles */
 nav {
   margin-bottom: 20px;
 }
@@ -40,6 +42,7 @@ nav a:hover::after {
   width: 100%;
 }
 
+/* ✅ Navbar + Responsive Menu */
 .navbar {
   position: relative;
 }
@@ -60,6 +63,7 @@ nav a:hover::after {
   display: none;
 }
 
+/* ✅ Logo */
 .logo img {
   height: 40px;
   margin-right: 10px;
@@ -68,11 +72,11 @@ nav a:hover::after {
   outline: none;
 }
 
-/* Remove underline from logo link only */
 .logo:hover {
   text-decoration: none;
 }
 
+/* ✅ Hero Banner */
 .hero {
   background: linear-gradient(135deg, #007BFF, #0056b3);
   color: white;
@@ -95,6 +99,7 @@ nav a:hover::after {
   animation-delay: 0.5s;
 }
 
+/* ✅ Hero Animations */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -105,6 +110,7 @@ nav a:hover::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ✅ Main Section Style */
 section {
   margin-bottom: 40px;
   padding: 20px;
@@ -113,6 +119,7 @@ section {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* ✅ Portfolio Gallery */
 .gallery {
   display: flex;
   gap: 10px;
@@ -133,6 +140,7 @@ section {
   border-color: #333;
 }
 
+/* ✅ Contact Form */
 form label {
   font-weight: bold;
 }
@@ -166,6 +174,7 @@ form button:hover {
   box-shadow: 0 6px 12px rgba(0,86,179,0.5);
 }
 
+/* ✅ Footer */
 footer {
   margin-top: 40px;
   padding-top: 10px;
@@ -175,6 +184,7 @@ footer {
   text-align: center;
 }
 
+/* ✅ Social Icons in Footer */
 .social-icons a {
   color: #777;
   margin: 0 5px;
@@ -186,9 +196,7 @@ footer {
   color: #007BFF;
 }
 
-
-
-/* Lightbox overlay */
+/* ✅ Lightbox Overlay for Portfolio */
 #lightbox {
   position: fixed;
   top: 0;
@@ -235,7 +243,7 @@ footer {
   right: 20px;
 }
 
-/* Responsive styles for small screens */
+/* ✅ Responsive Styles */
 @media (max-width: 600px) {
   nav {
     text-align: center;
@@ -278,6 +286,7 @@ footer {
   }
 }
 
+/* ✅ CTA Banner */
 .cta-banner {
   background: linear-gradient(135deg, #007BFF, #0056b3);
   color: white;
@@ -313,6 +322,8 @@ footer {
   background: #e6e6e6;
   color: #0056b3;
 }
+
+/* ✅ Services Section */
 .services {
   display: flex;
   flex-wrap: wrap;
@@ -341,38 +352,39 @@ footer {
   margin-bottom: 15px;
 }
 
+/* ✅ Achievement Stats Section */
 .stats {
   text-align: center;
   padding: 40px 20px;
 }
+
 .counter-box {
   display: flex;
   justify-content: center;
   gap: 40px;
   margin-top: 20px;
 }
+
 .counter {
   font-size: 2.5rem;
   font-weight: bold;
   color: #007BFF;
 }
+
 .counter + p {
   font-size: 1rem;
   margin-top: 10px;
 }
+
+/* ✅ Ensure Smooth Scroll & PWA Scroll */
 html, body {
   height: auto;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* important for smooth iOS scroll */
+  -webkit-overflow-scrolling: touch;
 }
 
+/* ✅ Parallax Section (Hero Effect) */
 .parallax-section {
-  position: relative;
-  height: 400px;
-  overflow: hidden;
-}
-
- .parallax-section {
   position: relative;
   background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=1350&q=80');
   background-attachment: fixed;
@@ -387,11 +399,11 @@ html, body {
   text-align: center;
 }
 
+/* ✅ Parallax Text Content */
 .parallax-section-content h2 {
   font-size: 2.5rem;
   margin-bottom: 10px;
 }
-
 
 .parallax-section-content p {
   font-size: 1.1rem;
