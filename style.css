@@ -492,3 +492,15 @@ html, body {
   color: #0056b3;
 }
 
+/* ✅ Page Fade-in Animation */
+.page-transition {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.page-transition.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
