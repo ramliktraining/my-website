@@ -3,110 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚀 How I Built My Personal Website with Barba.js</title>
 
-  <!-- ✅ SEO Meta Tags -->
-  <title>🚀 How I Built My Personal Website - Ramlik's Blog</title>
-  <meta name="description" content="Discover how Ramlik built his personal site using HTML, CSS, PWA, animations, and GitHub Pages." />
-  <meta name="keywords" content="Ramlik, blog, web development, PWA, AOS, personal website, transitions" />
-  <meta name="author" content="Ramlik Mohamed" />
-  <meta name="robots" content="index, follow" />
+  <!-- Meta Tags -->
+  <meta name="description" content="Learn how I used Barba.js to create smooth transitions and SPA-like navigation on my portfolio site." />
+  <meta name="author" content="Ramlik" />
 
-  <!-- ✅ Social Sharing -->
-  <meta property="og:title" content="🚀 How I Built My Personal Website" />
-  <meta property="og:description" content="Step-by-step breakdown of how Ramlik created his fast, modern portfolio website." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://ramliktraining.github.io/my-website/blog-post-barba.html" />
-  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/social-share.png" />
-
-  <!-- ✅ CSS & Fonts -->
+  <!-- Barba & AOS -->
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
-  <!-- ✅ Barba.js Transition Loader (Optional) -->
-  <style>
-    .barba-transition {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .barba-transition-active {
-      opacity: 1;
-    }
-  </style>
 </head>
-<body>
+<body data-barba="wrapper">
 
-  <!-- ✅ Header -->
   <div id="header-placeholder"></div>
 
-  <!-- ✅ Blog Post Container -->
-  <div data-barba="wrapper">
-    <div data-barba="container" data-barba-namespace="blog">
-      <main class="blog-post" data-aos="fade-up">
-        <article>
-          <h1>🚀 How I Built My Personal Website</h1>
-          <p><em>Published on June 2025 by Ramlik Mohamed</em></p>
+  <main data-barba="container" data-barba-namespace="blog-barba" class="blog-post fade-in">
+    <h1>🚀 How I Built My Personal Website with Barba.js</h1>
+    <p><em>Published: June 2025 · By Ramlik</em></p>
 
-          <p>I started with a blank HTML file and slowly built out features like:</p>
-          <ul>
-            <li>💻 Responsive layout with flexbox and media queries</li>
-            <li>🎨 Custom hero banners and parallax effects</li>
-            <li>✨ Scroll animations using AOS</li>
-            <li>📦 PWA support with service workers</li>
-            <li>📈 GA4 Analytics and social meta tags</li>
-            <li>🔗 Hosted on GitHub Pages (100% free)</li>
-          </ul>
+    <h2>Why I Chose Barba.js</h2>
+    <p>To create seamless transitions between pages, reduce reloads, and keep animations flowing smoothly.</p>
 
-          <h2>Highlights</h2>
-          <p>
-            My favorite part was implementing the <strong>typewriter effect</strong>
-            and making the whole site feel like a native app. The counter animations
-            also added a nice touch!
-          </p>
+    <h2>Setup Process</h2>
+    <p>I loaded Barba via CDN, added `data-barba` attributes to each page, and wrote JS to define transitions.</p>
 
-          <blockquote>“Start simple. Learn by building.”</blockquote>
+    <h2>Fade Between Pages</h2>
+    <p>Using `leave` and `enter` hooks in Barba, I created a fade-out + fade-in effect on every link click.</p>
 
-          <p>
-            You can <a href="index.html">visit the homepage</a> or
-            <a href="portfolio.html">explore my portfolio</a> to see more.
-          </p>
-        </article>
-      </main>
-    </div>
-  </div>
+    <h2>JS Example:</h2>
+    <pre><code>
+barba.init({
+  transitions: [{
+    leave({ current }) {
+      return gsap.to(current.container, { opacity: 0 });
+    },
+    enter({ next }) {
+      return gsap.from(next.container, { opacity: 0 });
+    }
+  }]
+});
+    </code></pre>
 
-  <!-- ✅ Footer -->
+    <h2>What Improved</h2>
+    <p>It gave my site a slick app-like feel. Pages feel faster, users stay longer, and the flow is delightful.</p>
+
+    <h2>Bonus: Integrated AOS</h2>
+    <p>Since Barba unloads DOM content, I re-initialize AOS on each transition with:</p>
+    <pre><code>
+barba.hooks.afterEnter(() => {
+  AOS.init({ once: true });
+});
+    </code></pre>
+
+    <p><a href="index.html" class="cta-button">← Back to Home</a></p>
+  </main>
+
   <div id="footer-placeholder"></div>
 
   <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init({ duration: 800, once: true });</script>
-
-  <!-- ✅ Barba.js for Page Transitions -->
-  <script src="https://unpkg.com/@barba/core"></script>
   <script>
     barba.init({
       transitions: [{
         name: 'fade',
-        leave(data) {
-          return gsap.to(data.current.container, {
-            opacity: 0,
-            duration: 0.5
-          });
+        leave({ current }) {
+          return gsap.to(current.container, { opacity: 0, duration: 0.4 });
         },
-        enter(data) {
-          return gsap.from(data.next.container, {
-            opacity: 0,
-            duration: 0.5
-          });
+        enter({ next }) {
+          return gsap.from(next.container, { opacity: 0, duration: 0.4 });
         }
       }]
     });
+
+    barba.hooks.afterEnter(() => {
+      AOS.init({ duration: 1000, once: true });
+    });
   </script>
-
-  <!-- ✅ GSAP Animation Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
 </body>
 </html>
