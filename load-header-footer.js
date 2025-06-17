@@ -23,3 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => console.error("Footer load error:", err));
 });
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const page = document.querySelector("main, body");
+    if (page) {
+      page.classList.add("page-transition");
+      setTimeout(() => page.classList.add("loaded"), 50);
+    }
+  });
+</script>
