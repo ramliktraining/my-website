@@ -9,13 +9,12 @@
   <meta name="keywords" content="Ramlik, portfolio, web developer, services, contact, UI/UX, SEO" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
- 
-  <!-- ✅ Android + iOS PWA Compatibility Meta Tagss -->
+
+  <!-- ✅ PWA Meta -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
-
-  <!-- ✅ Social Sharing (Open Graph & Twitter Card) -->
+  <!-- ✅ Open Graph & Twitter -->
   <meta property="og:title" content="Ramlik's Website" />
   <meta property="og:description" content="Explore Ramlik's portfolio, services, and contact details." />
   <meta property="og:type" content="website" />
@@ -26,148 +25,102 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://ramliktraining.github.io/my-website/images/social-share.png" />
 
-  <!-- ✅ Performance: Preconnect for Fonts and Icons -->
+  <!-- ✅ Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
-  <!-- ✅ PWA Manifest -->
+  <!-- ✅ Manifest -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- ✅ AOS Animate On Scroll CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-
-  <!-- ✅ CSS -->
+  <!-- ✅ External CSS -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✅ Google Site Verification -->
+  <!-- ✅ Google Verification -->
   <meta name="google-site-verification" content="Ck9f_dGxe-1CxvMNKb00WlanalJBVyIeYNDd15vLv4g" />
 
   <title>Home - Ramlik's Website</title>
 </head>
-<body>
-  
+<body data-barba="wrapper">
+
+  <!-- ✅ Global Transition Overlay -->
+  <div class="barba-transition"></div>
+
+  <!-- ✅ Scroll Progress -->
+  <div id="scroll-progress-bar"></div>
+
   <!-- ✅ Dynamic Header -->
   <div id="header-placeholder"></div>
 
-  <!-- ✅ Hero Section -->
-  <header class="hero" data-aos="fade-down">
-    <h1 class="hero-title"><span class="typewriter-text"></span></h1>
-    <p class="hero-subtitle">Creating engaging web experiences</p>
-  </header>
-
-  <!-- ✅ Parallax Section with Animated Text (Scroll Fade-In) -->
-<section class="parallax-section">
-  <div class="parallax-section-content">
-    <h2 data-aos="fade-down">Bringing Ideas to Life</h2>
-    <p data-aos="fade-up" data-aos-delay="100">Fast. Modern. Responsive. Functional.</p>
-    <p data-aos="fade-up" data-aos-delay="200">I design with clarity and build with purpose.</p>
-    <p data-aos="fade-up" data-aos-delay="300">Optimized for performance and mobile-first design.</p>
-    <!-- <p data-aos="fade-up" data-aos-delay="400">Built with semantic HTML5 and scalable CSS.</p>
-    <p data-aos="fade-up" data-aos-delay="500">Deployed as a PWA, installable and offline-ready.</p>
-    <p data-aos="fade-up" data-aos-delay="600">Focused on clean UI and smooth user journeys.</p>
-    <p data-aos="fade-up" data-aos-delay="700">Lightweight animations for delightful experiences.</p>
-    <p data-aos="fade-up" data-aos-delay="800">Fully hosted with GitHub Pages for reliability.</p>
-    <p data-aos="fade-up" data-aos-delay="900">Tracked with GA4 to understand and improve.</p>
-    <p data-aos="fade-up" data-aos-delay="1000">Let’s bring your vision to the web — beautifully.</p> -->
-  </div>
-</section>
-
-   <!-- ✅ Main Content -->
-  <main>
+  <!-- ✅ Page Container (Barba view) -->
+  <main data-barba="container" data-barba-namespace="home">
     
-  <!-- ✅ Welcome Introduction -->
-  <section class="fade-in" data-aos="fade-up">
-    
-    <h2>Welcome to My World</h2>
-    <p>
-      I'm <strong>Ramlik Mohamed</strong>, a passionate front-end developer with a love for clean design and intuitive interfaces.
-      My mission is to build fast, modern, and user-friendly websites that deliver value.
-      I enjoy translating client goals into functional and aesthetically pleasing experiences.
-      Whether it's building landing pages or full-scale portfolios, I bring clarity to your digital presence.
-      I focus on web performance, mobile responsiveness, and clean semantic code.
-      My process involves careful planning, design mockups, coding, testing, and deployment.
-      Every pixel matters to me, and I strive to deliver results that are both beautiful and meaningful.
-      With experience across personal, business, and experimental projects, I’ve developed a strong grasp of front-end principles.
-      I use tools like HTML5, CSS3, JavaScript, GitHub, and performance optimization techniques.
-      If you’re looking for someone who values attention to detail and user satisfaction, you’re in the right place.
-    </p>
-      
-  </section>
-    
-  <!-- ✅ What This Site Offers -->
-  <section class="fade-in" data-aos="fade-up" data-aos-delay="100">
-    <h2>What This Site Offers</h2>
-    <p>
-      This site is a living portfolio of my work and a hub for sharing what I do.
-      You’ll find pages like <a href="about.html">About</a>, which introduces my background and career journey.
-      In the <a href="services.html">Services</a> section, I outline exactly how I can help you or your business grow online.
-      I also showcase real projects on the <a href="portfolio.html">Portfolio</a> page, demonstrating design, layout, and branding skills.
-      The <a href="contact.html">Contact</a> page makes it easy to get in touch and start a conversation with me.
-      You’ll notice custom animations and effects built using CSS and JavaScript to enhance your experience.
-      This site is optimized for mobile and desktop, ensuring accessibility for all users.
-      Every page includes SEO-friendly tags, meta descriptions, and responsive layouts.
-      I’ve also added Progressive Web App (PWA) support, allowing the site to work like a mobile app.
-      This platform evolves regularly as I learn and experiment with the latest web technologies.
-    </p>
-  </section>
+    <!-- ✅ Hero -->
+    <header class="hero" data-aos="fade-down">
+      <h1 class="hero-title"><span class="typewriter-text"></span></h1>
+      <p class="hero-subtitle">Creating engaging web experiences</p>
+    </header>
 
-  <!-- ✅ Latest News / Announcements -->
-  <section class="fade-in" data-aos="zoom-in" data-aos-delay="200">
-    <h2>Latest Updates</h2>
-    <ul>
-      <li><strong>June 2025:</strong> Launched full SEO optimization including structured meta tags and open graph support.</li>
-      <li><strong>June 2025:</strong> Converted the website to a PWA (Progressive Web App) for installable mobile support.</li>
-      <li><strong>June 2025:</strong> Set up dynamic header and footer loading with <code>load-header-footer.js</code>.</li>
-      <li><strong>June 2025:</strong> Added service worker registration and a manifest.json for offline capabilities.</li>
-      <li><strong>June 2025:</strong> Implemented animated typewriter effect for the hero title text.</li>
-      <li><strong>May 2025:</strong> Developed responsive navigation bar with a mobile hamburger menu.</li>
-      <li><strong>May 2025:</strong> Introduced AOS (Animate On Scroll) animations across all content sections.</li>
-      <li><strong>May 2025:</strong> Designed and added favicon, Apple touch icons, and Android app icons.</li>
-      <li><strong>May 2025:</strong> Hosted all assets on GitHub Pages and connected Google Analytics 4.</li>
-      <li><strong>Coming Soon:</strong> Blog articles, project write-ups, and new interactive experiments!</li>
-    </ul>
-  </section>
+    <!-- ✅ Parallax -->
+    <section class="parallax-section">
+      <div class="parallax-section-content">
+        <h2 data-aos="fade-down">Bringing Ideas to Life</h2>
+        <p data-aos="fade-up" data-aos-delay="100">Fast. Modern. Responsive. Functional.</p>
+        <p data-aos="fade-up" data-aos-delay="200">I design with clarity and build with purpose.</p>
+        <p data-aos="fade-up" data-aos-delay="300">Optimized for performance and mobile-first design.</p>
+      </div>
+    </section>
 
-  <!-- ✅ Animated Counter Section -->
-  <section class="fade-in stats" data-aos="fade-up">
-    <h2>My Achievements</h2>
-    <div class="counter-box">
-      <div><span class="counter" data-target="25">0</span><p>Projects</p></div>
-      <div><span class="counter" data-target="12">0</span><p>Clients</p></div>
-      <div><span class="counter" data-target="5">0</span><p>Years Experience</p></div>
-    </div>
-  </section>
-</main>
+    <!-- ✅ Introduction -->
+    <section class="fade-in" data-aos="fade-up">
+      <h2>Welcome to My World</h2>
+      <p>
+        I'm <strong>Ramlik Mohamed</strong>, a passionate front-end developer...
+      </p>
+    </section>
 
+    <!-- ✅ Site Features -->
+    <section class="fade-in" data-aos="fade-up" data-aos-delay="100">
+      <h2>What This Site Offers</h2>
+      <p>
+        This site is a living portfolio of my work and a hub for sharing...
+      </p>
+    </section>
 
-  <!-- ✅ Dynamic Footer -->
+    <!-- ✅ Updates -->
+    <section class="fade-in" data-aos="zoom-in" data-aos-delay="200">
+      <h2>Latest Updates</h2>
+      <ul>
+        <li><strong>June 2025:</strong> Launched full SEO optimization...</li>
+        <!-- more -->
+      </ul>
+    </section>
+
+    <!-- ✅ Achievements -->
+    <section class="fade-in stats" data-aos="fade-up">
+      <h2>My Achievements</h2>
+      <div class="counter-box">
+        <div><span class="counter" data-target="25">0</span><p>Projects</p></div>
+        <div><span class="counter" data-target="12">0</span><p>Clients</p></div>
+        <div><span class="counter" data-target="5">0</span><p>Years</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- ✅ Load Header & Footer Script -->
+  <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
-
-  <!-- ✅ iOS Refresh Detection -->
-  <script>
-  window.addEventListener('load', function () {
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent.toLowerCase());
-    const isInStandaloneMode = window.navigator.standalone === true;
-
-    if (isIOS && isInStandaloneMode) {
-      const refreshBtn = document.getElementById('ios-refresh');
-      if (refreshBtn) refreshBtn.style.display = 'block';
-    }
-  });
-  </script>
-
-  <!-- ✅ AOS Animation Script -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
 
-  <!-- ✅ Typewriter Effect Script -->
+  <!-- ✅ Typewriter -->
   <script>
     const phrases = [
       "Welcome to Ramlik's Website  ",
@@ -175,73 +128,77 @@
       "Let's build something great!"
     ];
     const textElement = document.querySelector(".typewriter-text");
-    let phraseIndex = 0;
-    let letterIndex = 0;
-    let currentPhrase = "";
-    let isDeleting = false;
-
+    let phraseIndex = 0, letterIndex = 0, isDeleting = false;
     function type() {
-      currentPhrase = phrases[phraseIndex];
-      if (isDeleting) {
-        textElement.textContent = currentPhrase.substring(0, letterIndex--);
-      } else {
-        textElement.textContent = currentPhrase.substring(0, letterIndex++);
-      }
-
-      if (!isDeleting && letterIndex === currentPhrase.length) {
-        isDeleting = true;
-        setTimeout(type, 1500);
-      } else if (isDeleting && letterIndex === 0) {
-        isDeleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(type, 300);
-      } else {
-        setTimeout(type, isDeleting ? 50 : 100);
-      }
+      let current = phrases[phraseIndex];
+      textElement.textContent = current.substring(0, letterIndex += isDeleting ? -1 : 1);
+      if (!isDeleting && letterIndex === current.length) isDeleting = true, setTimeout(type, 1500);
+      else if (isDeleting && letterIndex === 0) isDeleting = false, phraseIndex = (phraseIndex + 1) % phrases.length, setTimeout(type, 300);
+      else setTimeout(type, isDeleting ? 50 : 100);
     }
-
     document.addEventListener("DOMContentLoaded", type);
   </script>
 
-  <!-- ✅ Animated Counter Script -->
+  <!-- ✅ Counter -->
   <script>
     const counters = document.querySelectorAll(".counter");
     const speed = 200;
-
     counters.forEach(counter => {
       const update = () => {
         const target = +counter.getAttribute("data-target");
         const current = +counter.innerText;
-        const increment = Math.ceil(target / speed);
-
+        const inc = Math.ceil(target / speed);
         if (current < target) {
-          counter.innerText = current + increment;
+          counter.innerText = current + inc;
           setTimeout(update, 20);
-        } else {
-          counter.innerText = target;
-        }
+        } else counter.innerText = target;
       };
-
       const onScroll = () => {
         const rect = counter.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom >= 0) {
-          update();
-          window.removeEventListener("scroll", onScroll);
-        }
+        if (rect.top < window.innerHeight && rect.bottom >= 0) update(), window.removeEventListener("scroll", onScroll);
       };
-
       window.addEventListener("scroll", onScroll);
     });
   </script>
 
-  <!-- ✅ Service Worker for PWA -->
+  <!-- ✅ Scroll Bar -->
+  <script>
+    window.addEventListener("scroll", () => {
+      const scrollProgress = document.getElementById("scroll-progress-bar");
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      scrollProgress.style.width = scrolled + "%";
+    });
+  </script>
+
+  <!-- ✅ barba.js for SPA Transitions -->
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+  <script>
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) {
+          return gsap.to(data.current.container, { opacity: 0, duration: 0.5 });
+        },
+        enter(data) {
+          return gsap.from(data.next.container, { opacity: 0, duration: 0.5 });
+        }
+      }]
+    });
+  </script>
+
+  <!-- ✅ GSAP for barba transitions -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
+  <!-- ✅ Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(reg => console.log('SW registered:', reg.scope))
-        .catch(err => console.error('SW registration failed:', err));
+        .catch(err => console.error('SW failed:', err));
     }
   </script>
-  
+
 </body>
 </html>
