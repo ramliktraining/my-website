@@ -5,35 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀 How I Built My Personal Website with Barba.js</title>
 
-  <!-- Meta Tags -->
+  <!-- SEO Meta -->
   <meta name="description" content="Learn how I used Barba.js to create smooth transitions and SPA-like navigation on my portfolio site." />
   <meta name="author" content="Ramlik" />
 
-  <!-- Barba & AOS -->
+  <!-- Barba.js + AOS -->
   <script src="https://unpkg.com/@barba/core"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <link rel="stylesheet" href="style.css" />
 
+  <!-- Optional: Font Awesome (if needed for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body data-barba="wrapper">
 
+  <!-- Header (loaded dynamically) -->
   <div id="header-placeholder"></div>
 
-  <main data-barba="container" data-barba-namespace="blog-barba" class="blog-post fade-in">
-    <h1>🚀 How I Built My Personal Website with Barba.js</h1>
-    <p><em>Published: June 2025 · By Ramlik</em></p>
+  <!-- Barba container -->
+  <main data-barba="container" data-barba-namespace="blog-barba">
+    <section class="blog-post fade-in" style="max-width: 800px; margin: auto; padding: 20px;">
+      <h1>🚀 How I Built My Personal Website with Barba.js</h1>
+      <p><em>Published: June 2025 · By Ramlik</em></p>
 
-    <h2>Why I Chose Barba.js</h2>
-    <p>To create seamless transitions between pages, reduce reloads, and keep animations flowing smoothly.</p>
+      <h2>Why I Chose Barba.js</h2>
+      <p>To create seamless transitions between pages, reduce reloads, and keep animations flowing smoothly.</p>
 
-    <h2>Setup Process</h2>
-    <p>I loaded Barba via CDN, added `data-barba` attributes to each page, and wrote JS to define transitions.</p>
+      <h2>Setup Process</h2>
+      <p>I loaded Barba via CDN, added `data-barba` attributes to each page, and wrote JS to define transitions.</p>
 
-    <h2>Fade Between Pages</h2>
-    <p>Using `leave` and `enter` hooks in Barba, I created a fade-out + fade-in effect on every link click.</p>
+      <h2>Fade Between Pages</h2>
+      <p>Using `leave` and `enter` hooks in Barba, I created a fade-out + fade-in effect on every link click.</p>
 
-    <h2>JS Example:</h2>
-    <pre><code>
+      <h2>JS Example:</h2>
+      <pre><code>
 barba.init({
   transitions: [{
     leave({ current }) {
@@ -44,26 +49,29 @@ barba.init({
     }
   }]
 });
-    </code></pre>
+      </code></pre>
 
-    <h2>What Improved</h2>
-    <p>It gave my site a slick app-like feel. Pages feel faster, users stay longer, and the flow is delightful.</p>
+      <h2>What Improved</h2>
+      <p>It gave my site a slick app-like feel. Pages feel faster, users stay longer, and the flow is delightful.</p>
 
-    <h2>Bonus: Integrated AOS</h2>
-    <p>Since Barba unloads DOM content, I re-initialize AOS on each transition with:</p>
-    <pre><code>
+      <h2>Bonus: Re-initialize AOS</h2>
+      <pre><code>
 barba.hooks.afterEnter(() => {
   AOS.init({ once: true });
 });
-    </code></pre>
+      </code></pre>
 
-    <p><a href="index.html" class="cta-button">← Back to Home</a></p>
+      <p><a href="index.html" class="cta-button">← Back to Home</a></p>
+    </section>
   </main>
 
+  <!-- Footer (loaded dynamically) -->
   <div id="footer-placeholder"></div>
 
-  <!-- ✅ Scripts -->
+  <!-- Header/Footer Script -->
   <script src="load-header-footer.js" defer></script>
+
+  <!-- Barba Transition Script -->
   <script>
     barba.init({
       transitions: [{
