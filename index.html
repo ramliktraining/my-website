@@ -104,8 +104,8 @@
       This site is a living portfolio of my work and a hub for sharing what I do.
       You’ll find pages like <a href="about.html">About</a>, which introduces my background and career journey.
       In the <a href="services.html">Services</a> section, I outline exactly how I can help you or your business grow online.
-      I also showcase real projects on the <a href="portfolio.html">Portfolio</a> page, demonstrating design, layout, and branding skills.
-      The <a href="contact.html">Contact</a> page makes it easy to get in touch and start a conversation with me.
+      I also showcase real projects on the <a href="portfolio.html" data-ga-event="portfolio_click">See My Portfolio</a> page, demonstrating design, layout, and branding skills.
+      The <button data-ga-event="contact_button">Contact</button> page makes it easy to get in touch and start a conversation with me.
       You’ll notice custom animations and effects built using CSS and JavaScript to enhance your experience.
       This site is optimized for mobile and desktop, ensuring accessibility for all users.
       Every page includes SEO-friendly tags, meta descriptions, and responsive layouts.
@@ -257,5 +257,22 @@
   });
 </script>
   
+  <!-- ✅ GA4 Event -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('[data-ga-event]').forEach(el => {
+      el.addEventListener('click', () => {
+        const eventName = el.getAttribute('data-ga-event');
+        if (eventName) {
+          gtag('event', eventName, {
+            event_category: 'engagement',
+            event_label: window.location.pathname
+          });
+          console.log("✅ GA4 Event Sent:", eventName);
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
