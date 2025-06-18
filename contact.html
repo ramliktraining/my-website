@@ -26,9 +26,10 @@
   <style>
     #success-message {
       display: none;
-      color: green;
+      color: blue and green;
       font-weight: bold;
       margin-top: 15px;
+      transition: opacity 0.3s ease;
     }
   </style>
 </head>
@@ -78,13 +79,21 @@
       const data = new FormData(form);
       const successMsg = document.getElementById("success-message");
 
-      fetch("https://script.google.com/macros/s/AKfycbzR6-98q5pcxFdLI6lRZXLEnqEkjHjORX00jkObvok-FMajx2WpBrzpVYxieqKl2PZJ7Q/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbxdus8Hl--JdxEqGwJQ7curpzZFE2ZdJeqDzOXoD5OGQFke1ZTC0Qsp59zni7RzTOvE/exec", {
         method: "POST",
         body: data
       }).then(response => {
         if (response.ok) {
           form.reset();
           successMsg.style.display = "block";
+          successMsg.style.opacity = "1";
+          // Auto-hide after 5 seconds
+          setTimeout(() => {
+            successMsg.style.opacity = "0";
+            setTimeout(() => {
+              successMsg.style.display = "none";
+            }, 300); // wait for fade-out
+          }, 5000);
         } else {
           alert("Something went wrong. Please try again later.");
         }
