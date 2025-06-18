@@ -79,8 +79,8 @@
       const data = new FormData(form);
       const successMsg = document.getElementById("success-message");
 
-      fetch("https://script.google.com/macros/s/AKfycbxdus8Hl--JdxEqGwJQ7curpzZFE2ZdJeqDzOXoD5OGQFke1ZTC0Qsp59zni7RzTOvE/exec", {
-        method: "POST",
+      fetch("https://script.google.com/macros/s/AKfycbxdus8Hl--JdxEqGwJQ7curpzZFE2ZdJeqDzOXoD5OGQFke1ZTC0Qsp59zni7RzTOvE/exec/exec", {
+         method: "POST",
         body: data
       }).then(response => {
         if (response.ok) {
