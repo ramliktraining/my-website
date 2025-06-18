@@ -551,3 +551,29 @@ body.dark-mode .menu-icon {
   background: #0056b3;
 }
 
+/* ✅ Spinner Styles */
+#page-loader {
+  position: fixed;
+  z-index: 99999;
+  background: rgba(255, 255, 255, 0.85);
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #007BFF;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
