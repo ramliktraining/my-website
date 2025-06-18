@@ -4,39 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ SEO Meta Tags -->
   <title>Contact - Ramlik's Website</title>
   <meta name="description" content="Get in touch with Ramlik. Fill out the contact form to discuss your web project or ask any questions." />
   <meta name="keywords" content="Ramlik, contact, web developer, form, email, reach out, web design" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
 
-  <!-- ✅ Open Graph Meta Tags -->
+  <!-- ✅ Open Graph Meta -->
   <meta property="og:title" content="Contact Ramlik - Web Developer" />
   <meta property="og:description" content="Reach out to Ramlik for web development, design, and collaboration inquiries." />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ramliktraining.github.io/my-website/contact.html" />
   <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/logo.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- ✅ Performance Optimization -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-   
-  <!-- ✅ PWA Manifest -->
-  <link rel="manifest" href="manifest.json" />  
-
-  <!-- ✅ AOS (Animate On Scroll) CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
-
-  <!-- ✅ Styles -->
+  <!-- ✅ Performance & PWA -->
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- ✅ Inline Style for Message -->
+  <!-- ✅ Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
   <style>
     #success-message {
       display: none;
@@ -48,69 +36,62 @@
 </head>
 <body>
 
-  <!-- ✅ Dynamic Header -->
+  <!-- ✅ Header -->
   <div id="header-placeholder"></div>
 
-  <!-- ✅ Page Title -->
   <main>
     <h1 data-aos="fade-down">Contact Me</h1>
 
-    <!-- ✅ Contact Section -->
     <section class="fade-in" data-aos="fade-up">
       <h2>Get in Touch</h2>
-      <p>If you want to reach out, please use the form below or email me directly at <a href="mailto:pleaseuse@form.now">pleaseuse@form.now</a>.</p>
+      <p>If you want to reach out, please use the form below or email me at <a href="mailto:ramlik@example.com">ramlik@example.com</a>.</p>
 
-      <form id="contact-form" action="https://formspree.io/f/manjwpga" method="POST" novalidate>
+      <form id="contact-form">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required />
+        <input type="text" name="name" id="name" required placeholder="Your Name" />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="_replyto" placeholder="Your email" required />
+        <input type="email" name="email" id="email" required placeholder="Your Email" />
 
         <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+        <textarea name="message" id="message" rows="5" required placeholder="Your Message"></textarea>
 
         <button type="submit">Send</button>
-        <div id="success-message">Thank you! Your message has been sent.</div>
+        <div id="success-message">✅ Thank you! Your message has been sent.</div>
       </form>
     </section>
   </main>
 
-  <!-- ✅ Dynamic Footer -->
+  <!-- ✅ Footer -->
   <div id="footer-placeholder"></div>
 
   <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
-
-  <!-- ✅ Animate On Scroll -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
 
-  <!-- ✅ Form Submit Handler -->
+  <!-- ✅ Google Apps Script Submission -->
   <script>
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('success-message');
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const successMsg = document.getElementById("success-message");
 
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+      fetch("YOUR_GOOGLE_SCRIPT_WEBAPP_URL", {
+        method: "POST",
+        body: data
       }).then(response => {
         if (response.ok) {
           form.reset();
-          successMessage.style.display = 'block';
+          successMsg.style.display = "block";
         } else {
-          alert('Oops! Something went wrong.');
+          alert("Something went wrong. Please try again later.");
         }
-      }).catch(error => {
-        alert('Oops! There was a problem submitting your form.');
+      }).catch(() => {
+        alert("Could not connect to server.");
       });
     });
   </script>
