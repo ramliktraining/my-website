@@ -21,8 +21,6 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- ✅ Animate On Scroll -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
@@ -53,7 +51,7 @@
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" required placeholder="Your Email" />
 
-        <label for="message">Message:</label>
+        <label for="message"><p>Message:</p></label>
         <textarea name="message" id="message" rows="5" required placeholder="Your Message"></textarea>
 
         <button type="submit">Send</button>
@@ -80,7 +78,7 @@
       const data = new FormData(form);
       const successMsg = document.getElementById("success-message");
 
-      fetch("YOUR_GOOGLE_SCRIPT_WEBAPP_URL", {
+      fetch("https://script.google.com/macros/s/AKfycbxlbbq9HWhGu-JvOwPn8VpS79-6oXlS4Q0fvSYdtj1kVcO5zDJhbmPeIFybnAG6iwUpiQ/exec", {
         method: "POST",
         body: data
       }).then(response => {
