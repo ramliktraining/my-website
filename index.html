@@ -14,7 +14,7 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
 
-  <!-- ✅ Open Graph & Twitter -->
+  <!-- ✅ Open Graph & Twitter --> 
   <meta property="og:title" content="Ramlik's Website" />
   <meta property="og:description" content="Explore Ramlik's portfolio, services, and contact details." />
   <meta property="og:type" content="website" />
@@ -25,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://ramliktraining.github.io/images/social-share.png" />
 
-  <!-- ✅ Performance -->
+  <!-- ✅ Preconnect & Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
@@ -40,17 +40,17 @@
 
   <!-- ✅ Google Verification -->
   <meta name="google-site-verification" content="Ck9f_dGxe-1CxvMNKb00WlanalJBVyIeYNDd15vLv4g" />
-</head>
-<body data-barba="wrapper">
+  </head>
+  <body data-barba="wrapper">
 
-  <!-- ✅ Scroll Progress + Page Transition -->
+  <!-- ✅ Global Loading Spinner & Scroll Progress + Page Transition -->
   <div id="scroll-progress-bar"></div>
   <div class="barba-transition"></div>
 
-  <!-- ✅ Dynamic Header -->
+  <!-- ✅ Dynamic Header (inserted by JS) -->
   <div id="header-placeholder"></div>
 
-  <!-- ✅ Main Content -->
+   <!-- ✅ Main Page Content --> 
   <main data-barba="container" data-barba-namespace="home">
 
     <!-- ✅ Hero Section -->
@@ -138,16 +138,17 @@
     </section>
   </main>
 
-  <!-- ✅ Dynamic Footer -->
+   <!-- ✅ Dynamic Footer (loaded by JS) -->
   <div id="footer-placeholder"></div>
 
-  <!-- ✅ All Scripts -->
+  <!-- ✅ All Scripts JS Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-
+  
+    <!-- ✅ Your Modular Scripts -->
   <script src="load-header-footer.js" defer></script>
-  <script src="global-scripts.js" defer></script> <!-- ✅ This is your new file -->
+  <script src="global-scripts.js" defer></script>
 
 </body>
 </html>
