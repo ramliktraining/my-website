@@ -1,3 +1,12 @@
+// ✅ load banner.html into top of the body
+fetch("banner.html")
+  .then(res => res.text())
+  .then(data => {
+    const banner = document.createElement("div");
+    banner.innerHTML = data;
+    document.body.insertBefore(banner, document.body.firstChild);
+  });
+
 // load-header-footer.js
 document.addEventListener("DOMContentLoaded", function () {
   // Load header with error handling
@@ -22,16 +31,4 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("footer-placeholder").innerHTML = data;
     })
     .catch((err) => console.error("Footer load error:", err));
-});
-
-fetch("banner.html")
-    .then((res) => {
-      if (!res.ok) throw new Error("banner fetch failed");
-      return res.text();
-    })
-    .then(data => {
-      const banner = document.createElement("div");
-      banner.innerHTML = data;
-      document.body.insertBefore(banner, document.body.firstChild);
-    });
 });
