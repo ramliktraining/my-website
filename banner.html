@@ -8,10 +8,27 @@
 </div>-->
 
 <!-- ✅ Sliding Image Banner -->
-<div class="slide-banner" id="slide-banner">
+<!-- <div class="slide-banner" id="slide-banner">
   <div class="slides">
     <a href="portfolio.html"><img src="images/banner1.jpg" alt="Portfolio Update" /></a>
     <a href="blog.html"><img src="images/banner2.jpg" alt="New Blog Post" /></a>
     <a href="contact.html"><img src="images/banner3.jpg" alt="Contact Me Today" /></a>
   </div>
+</div> -->
+
+<!-- ✅ Full Slide Banner -->
+<div class="slide-banner">
+  <div class="slides" id="slides">
+    <div class="slide active"><img src="images/banner1.jpg" alt="Banner 1" /></div>
+    <div class="slide"><img src="images/banner2.jpg" alt="Banner 2" /></div>
+    <div class="slide"><img src="images/banner3.jpg" alt="Banner 3" /></div>
+  </div>
+
+  <!-- ⬅️ Arrows -->
+  <button class="prev" onclick="plusSlides(-1)">❮</button>
+  <button class="next" onclick="plusSlides(1)">❯</button>
+
+  <!-- ⚪ Dots -->
+  <div class="dots" id="dots"></div>
 </div>
+
