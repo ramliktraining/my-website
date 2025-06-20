@@ -85,3 +85,50 @@ if ('serviceWorker' in navigator) {
     .then(reg => console.log('SW registered:', reg.scope))
     .catch(err => console.error('SW registration failed:', err));
 }
+// ✅ Banner logic
+let slideIndex = 0;
+let slides = document.querySelectorAll(".slide");
+let dotsContainer = document.getElementById("dots");
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove("active");
+    if (i === index) slide.classList.add("active");
+  });
+
+  const dots = document.querySelectorAll(".dots span");
+  dots.forEach((dot, i) => {
+    dot.classList.remove("active");
+    if (i === index) dot.classList.add("active");
+  });
+}
+
+function plusSlides(n) {
+  slideIndex = (slideIndex + n + slides.length) % slides.length;
+  showSlide(slideIndex);
+}
+
+function autoSlide() {
+  plusSlides(1);
+  setTimeout(autoSlide, 5000); // Change every 5 seconds
+}
+
+// ⚪ Create dots dynamically
+function createDots() {
+  for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement("span");
+    dot.addEventListener("click", () => {
+      slideIndex = i;
+      showSlide(slideIndex);
+    });
+    dotsContainer.appendChild(dot);
+  }
+}
+
+// ✅ Initialize Banner
+document.addEventListener("DOMContentLoaded", () => {
+  slides = document.querySelectorAll(".slide");
+  createDots();
+  showSlide(slideIndex);
+  autoSlide();
+});
