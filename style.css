@@ -598,3 +598,37 @@ body.dark-mode .menu-icon {
   color: #fff;
 }
 
+
+
+.site-banner {
+  background: linear-gradient(90deg, #007BFF, #00c6ff);
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.site-banner a {
+  color: #ffffcc;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+#banner-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+#banner-close:hover {
+  color: #ffdede;
+}
+
