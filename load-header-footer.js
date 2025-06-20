@@ -1,25 +1,25 @@
 // ✅ load banner.html into top of the body
-fetch("banner.html")
-  .then(res => res.text())
-  .then(data => {
-    const banner = document.createElement("div");
-    banner.innerHTML = data;
-    document.body.insertBefore(banner, document.body.firstChild);
-  });
+// fetch("banner.html")
+ //  .then(res => res.text())
+//   .then(data => {
+//     const banner = document.createElement("div");
+ //    banner.innerHTML = data;
+//     document.body.insertBefore(banner, document.body.firstChild);
+//   });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const closeBtn = document.getElementById("banner-close");
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      document.getElementById("site-banner").style.display = "none";
-    });
-  }
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   const closeBtn = document.getElementById("banner-close");
+//   if (closeBtn) {
+//     closeBtn.addEventListener("click", () => {
+//       document.getElementById("site-banner").style.display = "none";
+//     });
+//   }
+// });
 
-setTimeout(() => {
-  const banner = document.getElementById("site-banner");
-  if (banner) banner.style.display = "none";
-}, 10000); // 10000ms = 10 seconds
+// setTimeout(() => {
+//   const banner = document.getElementById("site-banner");
+//   if (banner) banner.style.display = "none";
+// }, 10000); // 10000ms = 10 seconds
 
 // load-header-footer.js
 document.addEventListener("DOMContentLoaded", function () {
