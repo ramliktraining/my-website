@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// Load banner 
+// Load banner
   fetch("banner.html")
     .then(res => res.text())
     .then(data => {
