@@ -576,4 +576,25 @@ body.dark-mode .menu-icon {
   to { transform: rotate(360deg); }
 }
 
+/* ✅ Global Banner Style */
+.site-banner {
+  background: linear-gradient(90deg, #007BFF, #00c6ff);
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.site-banner a {
+  color: #ffe;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+
+.site-banner a:hover {
+  text-decoration: none;
+  color: #fff;
+}
 
