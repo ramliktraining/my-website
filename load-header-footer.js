@@ -16,6 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+setTimeout(() => {
+  const banner = document.getElementById("site-banner");
+  if (banner) banner.style.display = "none";
+}, 10000); // 10000ms = 10 seconds
+
 // load-header-footer.js
 document.addEventListener("DOMContentLoaded", function () {
   // Load header with error handling
