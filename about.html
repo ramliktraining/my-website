@@ -62,11 +62,13 @@
   <div id="footer-placeholder"></div>
 
   <!-- ✅ Load shared header & footer -->
-  <script src="load-header-footer.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
 
+  <!-- ✅ Your Modular Scripts -->
+  <script src="load-header-footer.js" defer></script>
+  <script src="global-scripts.js" defer></script>
+  
 </body>
 </html>
