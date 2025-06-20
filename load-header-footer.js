@@ -23,14 +23,3 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => console.error("Footer load error:", err));
 });
-
-
-// Load banner
-  fetch("banner.html")
-    .then(res => res.text())
-    .then(data => {
-      const banner = document.createElement("div");
-      banner.innerHTML = data;
-      document.body.insertBefore(banner, document.body.firstChild);
-    });
-});
