@@ -1,3 +1,4 @@
+// load-header-footer.js
 document.addEventListener("DOMContentLoaded", function () {
   // Load header with error handling
   fetch("header.html")
@@ -11,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((err) => console.error("Header load error:", err));
 
   
-
   // Load footer with error handling
   fetch("footer.html")
     .then((res) => {
@@ -22,4 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("footer-placeholder").innerHTML = data;
     })
     .catch((err) => console.error("Footer load error:", err));
+});
+
+
+// Load banner 
+  fetch("banner.html")
+    .then(res => res.text())
+    .then(data => {
+      const banner = document.createElement("div");
+      banner.innerHTML = data;
+      document.body.insertBefore(banner, document.body.firstChild);
+    });
 });
