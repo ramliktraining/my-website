@@ -632,3 +632,31 @@ body.dark-mode .menu-icon {
   color: #ffdede;
 }
 
+/* ✅ Slide Banner Style */
+.slide-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slide-banner .slides {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: slideBanner 15s infinite ease-in-out;
+}
+
+.slide-banner .slides img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes slideBanner {
+  0%   { transform: translateX(0%); }
+  33%  { transform: translateX(-100%); }
+  66%  { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
