@@ -70,6 +70,30 @@
   <script>
     AOS.init({ duration: 1000, once: true });
   </script>
+
+  <!-- ✅ Dark Mode Toggle Button -->
+<button id="dark-toggle">🌙 Dark Mode</button>
+
+<!-- ✅ Dark Mode Script (runs only after DOM is loaded) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById('dark-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const userPref = localStorage.getItem('theme');
+
+    if (userPref === 'dark' || (!userPref && prefersDark)) {
+      document.body.classList.add('dark-mode');
+      toggleBtn.textContent = '☀️ Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+  });
+</script>
   
 </body>
 </html>
