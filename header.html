@@ -43,6 +43,20 @@
   </button>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+    const refreshDiv = document.getElementById("ios-refresh");
+    if (isIos && isStandalone) {
+      console.log("✅ iOS PWA mode: showing refresh button");
+      refreshDiv.style.display = "block";
+    } else {
+      console.log("❌ Not iOS standalone or not iPhone");
+    }
+  });
+</script>
 
 
 <!-- ✅ iOS PWA Detection Script -->
