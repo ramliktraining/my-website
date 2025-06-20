@@ -7,6 +7,15 @@ fetch("banner.html")
     document.body.insertBefore(banner, document.body.firstChild);
   });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const closeBtn = document.getElementById("banner-close");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      document.getElementById("site-banner").style.display = "none";
+    });
+  }
+});
+
 // load-header-footer.js
 document.addEventListener("DOMContentLoaded", function () {
   // Load header with error handling
