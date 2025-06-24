@@ -366,7 +366,7 @@ f.parentNode.insertBefore(j,f);
 document.getElementById("newsletter-form").addEventListener("submit", function (e) {
   e.preventDefault();
   const email = document.getElementById("subscriber-email").value;
-
+  console.log("Sending email:", email);
   fetch("https://script.google.com/macros/s/AKfycbw3QP9lON5bkr82C0KsFZPuxOT4RWKrGriwmRv8sOJsVqX4MEha8JiAERdhUsyemT9zww/exec", {
     method: "POST",
     body: new URLSearchParams({ email: email })
