@@ -360,6 +360,30 @@ f.parentNode.insertBefore(j,f);
     });
   });
 </script>
+  
+<!-- ✅ Newsletter Subscribers -->
+<script>
+document.getElementById("newsletter-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = document.getElementById("subscriber-email").value;
 
+  fetch("https://script.google.com/macros/s/AKfycbw3QP9lON5bkr82C0KsFZPuxOT4RWKrGriwmRv8sOJsVqX4MEha8JiAERdhUsyemT9zww/exec", {
+    method: "POST",
+    body: new URLSearchParams({ email: email })
+  })
+    .then(res => res.text())
+    .then(data => {
+      if (data === "Success") {
+        document.getElementById("newsletter-form").reset();
+        document.getElementById("newsletter-success").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("newsletter-success").style.display = "none";
+        }, 4000);
+      } else {
+        alert("❌ Something went wrong. Please try again.");
+      }
+    });
+});
+</script>  
 </body>
 </html>
