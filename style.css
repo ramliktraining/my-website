@@ -575,3 +575,27 @@ body.dark-mode .menu-icon {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+.newsletter-signup {
+  background: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 40px 0;
+}
+
+#newsletter-form input[type="email"] {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#newsletter-form button {
+  padding: 10px 20px;
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
