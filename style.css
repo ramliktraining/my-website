@@ -599,3 +599,47 @@ body.dark-mode .menu-icon {
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* ✅ Newsletter Signup */
+.newsletter-signup {
+  background: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 40px 0;
+}
+
+#newsletter-form input[type="email"] {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#newsletter-form button {
+  padding: 10px 20px;
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ✅ Dark Mode Support */
+body.dark-mode .newsletter-signup {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+}
+
+body.dark-mode #newsletter-form input[type="email"] {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+body.dark-mode #newsletter-form button {
+  background-color: #0056b3;
+  color: #fff;
+}
+
