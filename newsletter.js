@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         successMessage.style.display = "block";
         setTimeout(() => {
           successMessage.style.display = "none";
-        }, 4000);
+        }, 1000);
       } else {
         alert("❌ Something went wrong.");
       }
