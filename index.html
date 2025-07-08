@@ -208,19 +208,30 @@
   </script>
 
   <!-- ✅ Typewriter Effect -->
-  <script>
-    const phrases = ["Welcome to Ramlik's Website", "Creating engaging web experiences", "Let's build something great!"];
-    const textElement = document.querySelector(".typewriter-text");
-    let phraseIndex = 0, letterIndex = 0, isDeleting = false;
-    function type() {
-      let current = phrases[phraseIndex];
-      textElement.textContent = current.substring(0, letterIndex += isDeleting ? -1 : 1);
-      if (!isDeleting && letterIndex === current.length) isDeleting = true, setTimeout(type, 1500);
-      else if (isDeleting && letterIndex === 0) isDeleting = false, phraseIndex = (phraseIndex + 1) % phrases.length, setTimeout(type, 300);
-      else setTimeout(type, isDeleting ? 50 : 100);
+
+<script>
+  const phrases = ["Welcome to Ramlik's Website","Creating engaging web experiences","Let's build something great!"];
+  const textElement = document.querySelector(".typewriter-text");
+  let phraseIndex = 0, letterIndex = 0, isDeleting = false;
+
+  function type() {
+    let current = phrases[phraseIndex];
+    textElement.textContent = current.substring(0, letterIndex += isDeleting ? -1 : 1);
+
+    if (!isDeleting && letterIndex === current.length) {
+      isDeleting = true;
+      setTimeout(type, 1500);
+    } else if (isDeleting && letterIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      setTimeout(type, 300);
+    } else {
+      setTimeout(type, isDeleting ? 50 : 100);
     }
-    document.addEventListener("DOMContentLoaded", type);
-  </script>
+  }
+
+  document.addEventListener("DOMContentLoaded", type);
+</script>
 
   <!-- ✅ Counter -->
   <script>
