@@ -575,19 +575,31 @@ body.dark-mode .menu-icon {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ✅ Newsletter Signup (Centered) */
 .newsletter-signup {
   background: #f1f1f1;
   padding: 30px;
-  text-align: center;
   border-radius: 10px;
-  margin: 40px 0;
+  margin: 40px auto;
+  text-align: center;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#newsletter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #newsletter-form input[type="email"] {
   padding: 10px;
-  width: 250px;
+  width: 100%;
+  max-width: 300px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
 #newsletter-form button {
@@ -595,38 +607,23 @@ body.dark-mode .menu-icon {
   background: #007BFF;
   color: #fff;
   border: none;
-  margin-left: 10px;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* ✅ Newsletter Signup */
-.newsletter-signup {
-  background: #f1f1f1;
-  padding: 30px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 40px 0;
+#newsletter-form button:hover {
+  background: #0056b3;
 }
 
-#newsletter-form input[type="email"] {
-  padding: 10px;
-  width: 250px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+#newsletter-success {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+  display: none;
 }
 
-#newsletter-form button {
-  padding: 10px 20px;
-  background: #007BFF;
-  color: #fff;
-  border: none;
-  margin-left: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* ✅ Dark Mode Support */
+/* ✅ Dark Mode */
 body.dark-mode .newsletter-signup {
   background-color: #1e1e1e;
   color: #f1f1f1;
@@ -642,4 +639,3 @@ body.dark-mode #newsletter-form button {
   background-color: #0056b3;
   color: #fff;
 }
-
