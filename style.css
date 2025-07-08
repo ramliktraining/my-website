@@ -580,36 +580,16 @@ body.dark-mode .menu-icon {
 .newsletter-signup {
   background: #f1f1f1;
   padding: 30px;
+  text-align: center;
   border-radius: 10px;
-  margin: 40px auto;
-  text-align: center;
-  max-width: 500px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* ✅ Fix Newsletter Heading Center Alignment */
-.newsletter-signup h2 {
-  text-align: center;
-  margin: 0 auto 20px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #333;
-}
-
-#newsletter-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 40px 0;
 }
 
 #newsletter-form input[type="email"] {
   padding: 10px;
-  width: 100%;
-  max-width: 300px;
+  width: 250px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-bottom: 10px;
-  font-size: 1rem;
 }
 
 #newsletter-form button {
@@ -617,21 +597,9 @@ body.dark-mode .menu-icon {
   background: #007BFF;
   color: #fff;
   border: none;
+  margin-left: 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s ease;
-}
-
-#newsletter-form button:hover {
-  background: #0056b3;
-}
-
-#newsletter-success {
-  color: green;
-  margin-top: 10px;
-  font-weight: bold;
-  display: none;
 }
 
 /* ✅ Dark Mode */
