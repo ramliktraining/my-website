@@ -641,13 +641,33 @@ body.dark-mode #newsletter-form button {
 body.dark-mode .newsletter-signup h2 {
   color: #f1f1f1;
 }
-/* ✅ Fix Typewriter Layout Shift */
+/* ✅ Fix Typewriter Layout Shift and ✅ Responsive Typewriter Text */
 .typewriter-text {
-  display: inline-block;
-  min-width: 320px; /* reserve width based on your longest phrase */
+  display: block;
+  width: 100%;
+  max-width: 100%;
   min-height: 1.5em;
-  white-space: nowrap;
-  overflow: hidden;
   text-align: center;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1.8rem;
+  line-height: 1.4;
+}
+
+/* ✅ Optional (Improve mobile readability) */
+@media (max-width: 600px) {
+  .typewriter-text {
+    font-size: 1.2rem;
+  }
+}
+
+.typewriter-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
