@@ -649,3 +649,7 @@ body.dark-mode #newsletter-form button {
   background-color: #0056b3;
   color: #fff;
 }
+body.dark-mode .newsletter-signup h2 {
+  color: #f1f1f1;
+}
+
