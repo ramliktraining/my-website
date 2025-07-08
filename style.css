@@ -676,3 +676,14 @@ body.dark-mode .newsletter-signup h2 {
     font-size: 1.2rem;
   }
 }
+/* ✅ Fading Letters */
+.fade-letter {
+  display: inline-block;
+  animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
