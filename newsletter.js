@@ -1,39 +1,40 @@
+<script>
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("newsletter-form");
-  const emailField = document.getElementById("subscriber-email");
-  const successMsg = document.getElementById("newsletter-success");
+  const emailInput = document.getElementById("subscriber-email");
+  const successMessage = document.getElementById("newsletter-success");
 
-  if (!form || !emailField || !successMsg) return;
+  if (!form || !emailInput) return;
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const email = emailField.value.trim();
+    const email = emailInput.value.trim();
+    if (!email) return;
 
-    if (!email) {
-      alert("❌ Please enter a valid email address.");
-      return;
-    }
+    // Disable button to avoid double clicks
+    const button = form.querySelector("button");
+    button.disabled = true;
 
     fetch("https://script.google.com/macros/s/AKfycbw3QP9lON5bkr82C0KsFZPuxOT4RWKrGriwmRv8sOJsVqX4MEha8JiAERdhUsyemT9zww/exec", {
-      
       method: "POST",
       body: new URLSearchParams({ email: email })
     })
-      .then(res => res.text())
-      .then(data => {
-        if (data === "Success") {
-          form.reset();
-          successMsg.style.display = "block";
-          setTimeout(() => {
-            successMsg.style.display = "none";
-          }, 4000);
-        } else {
-          alert("❌ Something went wrong. Please try again.");
-        }
-      })
-      .catch(() => {
-        alert("❌ Error connecting to server.");
-      });
+    .then(res => res.text())
+    .then(data => {
+      if (data === "Success") {
+        form.reset();
+        successMessage.style.display = "block";
+        setTimeout(() => {
+          successMessage.style.display = "none";
+        }, 4000);
+      } else {
+        alert("❌ Something went wrong.");
+      }
+    })
+    .finally(() => {
+      button.disabled = false; // Re-enable button
+    });
   });
 });
+</script>
