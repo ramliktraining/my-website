@@ -641,7 +641,8 @@ body.dark-mode #newsletter-form button {
 body.dark-mode .newsletter-signup h2 {
   color: #f1f1f1;
 }
-/* ✅ Fix Typewriter Layout Shift and ✅ Responsive Typewriter Text */
+
+/* ✅ Typewriter Text Styling (Responsive + Centered + Blink) */
 .typewriter-text {
   display: block;
   width: 100%;
@@ -653,21 +654,25 @@ body.dark-mode .newsletter-signup h2 {
   text-overflow: ellipsis;
   font-size: 1.8rem;
   line-height: 1.4;
-}
-
-/* ✅ Optional (Improve mobile readability) */
-@media (max-width: 600px) {
-  .typewriter-text {
-    font-size: 1.2rem;
-  }
+  position: relative;
 }
 
 .typewriter-text::after {
   content: '|';
   animation: blink 1s infinite;
+  color: #007BFF;
+  margin-left: 4px;
+  font-weight: bold;
 }
 
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
+}
+
+/* ✅ Responsive Font Size */
+@media (max-width: 600px) {
+  .typewriter-text {
+    font-size: 1.2rem;
+  }
 }
