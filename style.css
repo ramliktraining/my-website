@@ -641,4 +641,13 @@ body.dark-mode #newsletter-form button {
 body.dark-mode .newsletter-signup h2 {
   color: #f1f1f1;
 }
-
+/* ✅ Fix Typewriter Layout Shift */
+.typewriter-text {
+  display: inline-block;
+  min-width: 320px; /* reserve width based on your longest phrase */
+  min-height: 1.5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.3s ease;
+}
