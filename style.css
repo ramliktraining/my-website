@@ -647,4 +647,14 @@ body.dark-mode #newsletter-form input[type="email"] {
 body.dark-mode #newsletter-form button {
   background-color: #0056b3;
   color: #fff;
+
+  
+}
+/* ✅ Fix Newsletter Heading Center Alignment */
+.newsletter-signup h2 {
+  text-align: center;
+  margin: 0 auto 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
 }
