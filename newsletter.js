@@ -1,42 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("newsletter-form");
-  if (!form) return;
-
-  const email = document.getElementById("subscriber-email");
-  const success = document.getElementById("newsletter-success");
-  const error = document.getElementById("newsletter-error");
-
-  const scriptURL = "https://script.google.com/macros/s/1wOjeneI6x5kQr9FpSUQMMGE6nCBiDiws0s6r9HcJDU7iTWUtyoYhopsa/exec"; // ✅ Your Google Script
+  if (!form) return; // ✅ prevent error if form doesn't exist
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
+    const email = document.getElementById("subscriber-email").value;
 
-    const emailValue = email.value.trim();
-    if (!emailValue || !emailValue.includes("@")) {
-      error.textContent = "Please enter a valid email address.";
-      error.style.display = "block";
-      return;
-    }
-
-    fetch(scriptURL, {
+    fetch("https://script.google.com/macros/s/AKfycbw3QP9lON5bkr82C0KsFZPuxOT4RWKrGriwmRv8sOJsVqX4MEha8JiAERdhUsyemT9zww/exec", { // ✅ Your Google Script
       method: "POST",
-      body: new URLSearchParams({ email: emailValue })
+      body: new URLSearchParams({ email: email })
     })
       .then(res => res.text())
       .then(data => {
-        if (/success/i.test(data)) {
-          success.style.display = "block";
-          error.style.display = "none";
+        if (data === "Success") {
           form.reset();
-          setTimeout(() => success.style.display = "none", 4000);
+          const success = document.getElementById("newsletter-success");
+          success.style.display = "block";
+          setTimeout(() => { success.style.display = "none"; }, 4000);
         } else {
-          throw new Error(data);
+          alert("❌ Something went wrong. Please try again.");
         }
-      })
-      .catch(err => {
-        console.error("Newsletter error:", err);
-        error.style.display = "block";
-        success.style.display = "none";
       });
   });
 });
+
