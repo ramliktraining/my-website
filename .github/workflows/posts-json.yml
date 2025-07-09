@@ -45,11 +45,12 @@ jobs:
           "
 
       - name: Commit and Push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add posts.json
-          git commit -m "🤖 Auto-generate posts.json" || echo "No changes"
-          git push
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    git config user.name "github-actions[bot]"
+    git config user.email "github-actions[bot]@users.noreply.github.com"
+    git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
+    git add posts.json
+    git commit -m "🤖 Auto-generate posts.json" || echo "No changes"
+    git push origin HEAD:main
