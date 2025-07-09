@@ -2,9 +2,10 @@ backend:
   name: github
   repo: ramliktraining/my-website
   branch: main
-  base_url: https://auth.ritwikdev.com
-  auth_endpoint: /auth/github
-  app_id: 7ba2e500c1aebadf1249  # public proxy app
+  auth_scope: repo
+  client_id: Ov23liVUa83MSMapCniY
+  
+  
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
