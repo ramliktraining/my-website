@@ -1,5 +1,4 @@
 name: Generate posts.json
-
 on:
   push:
     paths:
