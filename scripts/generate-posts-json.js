@@ -2,26 +2,33 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 
+// Directory where your blog posts (markdown files) are stored
 const postsDir = path.join(__dirname, "../posts");
+
+// Output file path
 const outputFile = path.join(__dirname, "../posts.json");
 
 const posts = [];
 
+// Read all files in posts directory
 fs.readdirSync(postsDir).forEach((file) => {
-  if (file.endsWith(".md")) {
-    const filePath = path.join(postsDir, file);
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    const { data } = matter(fileContent);
+  if (path.extname(file) === ".md") {
+    const fullPath = path.join(postsDir, file);
+    const content = fs.readFileSync(fullPath, "utf8");
+    const { data } = matter(content);
 
-    // Generate slug if not present 
-    const slug = data.slug || file.replace(/\.md$/, "");
+    // Skip post if title or date is missing
+    if (!data.title || !data.date) return;
+
+    // Auto-generate slug from filename (e.g. hello-world.md -> hello-world)
+    const slug = file.replace(/\.md$/, "");
 
     posts.push({
-      title: data.title || "Untitled",
-      date: data.date || "",
-      slug,
-      cover: data.cover || "",
-      excerpt: data.excerpt || "",
+      title: data.title,
+      date: data.date,
+      slug: slug,
+      cover_image: data.cover_image || null,
+      description: data.description || null,
     });
   }
 });
@@ -29,6 +36,7 @@ fs.readdirSync(postsDir).forEach((file) => {
 // Sort posts by date (newest first)
 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-// Save to posts.json
+// Write to posts.json
 fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-console.log("✅ posts.json generated.");
+
+console.log("✅ posts.json generated with", posts.length, "posts.");
