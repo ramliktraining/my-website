@@ -12,13 +12,15 @@ media_folder: "images/uploads" # Where images are stored in repo
 public_folder: "/images/uploads" # How images are referenced in HTML
 
 collections:
-  - name: "blog"
-    label: "Blog"
-    folder: "posts"
+  - name: blog
+    label: Blog
+    folder: posts
     create: true
-    slug: "{{slug}}"
+    slug: "{{slug}}" # this auto-generates the file name from the title
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Auto-generated from title. You can override." }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image", name: "cover", widget: "image", required: false, hint: "Optional blog cover image." }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
