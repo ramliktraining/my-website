@@ -1,30 +1,30 @@
-name: Generate posts.json
+name: 🔄 Generate posts.json
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "posts/**.md"  # Trigger only when blog posts are added/updated
+  workflow_dispatch:    # Allow manual run from GitHub UI
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: ⬇️ Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: 🔧 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install gray-matter
-        run: npm install gray-matter
+      - name: 📦 Install dependencies
+        run: npm install
 
-      - name: Generate posts.json
-        run: |
-          node scripts/generate-posts-json.js
+      - name: 🛠 Generate posts.json
+        run: node scripts/generate-posts-json.js
 
-            - name: Commit and Push posts.json
+      - name: ✅ Commit & push posts.json
         env:
           TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
@@ -32,5 +32,5 @@ jobs:
           git config --global user.email "ramlik-bot@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/ramliktraining/my-website.git
           git add posts.json
-          git commit -m "🤖 Auto-generate posts.json"
+          git commit -m "🤖 Auto-generate posts.json" || echo "No changes to commit"
           git push
