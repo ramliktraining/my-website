@@ -2,10 +2,10 @@ backend:
   name: github
   repo: ramliktraining/my-website
   branch: main
-  site_domain: ramliktraining.github.io
-  base_url: https://auth.netlify.com
-
   
+
+  auth_scope: repo
+  client_id: Ov23liVUa83MSMapCniY 🔁 Replace this with your real GitHub OAuth Client ID
   
   
 media_folder: "images/uploads" # Where images are stored in repo
