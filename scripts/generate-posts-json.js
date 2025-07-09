@@ -13,7 +13,7 @@ fs.readdirSync(postsDir).forEach((file) => {
     const fileContent = fs.readFileSync(filePath, "utf-8");
     const { data } = matter(fileContent);
 
-    // Generate slug if not present
+    // Generate slug if not present 
     const slug = data.slug || file.replace(/\.md$/, "");
 
     posts.push({
