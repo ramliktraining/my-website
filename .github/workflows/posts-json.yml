@@ -1,27 +1,52 @@
-const fs = require("fs");
-const path = require("path");
-const matter = require("gray-matter");
+name: Generate posts.json
 
-const postsDir = path.join(__dirname, "../posts");
-const outputFile = path.join(__dirname, "../posts.json");
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'posts/**'
+      - '.github/workflows/posts-json.yml'
 
-const posts = [];
+jobs:
+  generate-posts-json:
+    runs-on: ubuntu-latest
 
-fs.readdirSync(postsDir).forEach((file) => {
-  if (file.endsWith(".md")) {
-    const filePath = path.join(postsDir, file);
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContents);
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    posts.push({
-      title: data.title || "Untitled",
-      date: data.date || "",
-      description: data.description || "",
-      slug: file.replace(/\.md$/, ""),
-      cover: data.cover || "",
-    });
-  }
-});
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
-console.log("✅ posts.json generated!");
+      - name: Generate posts.json
+        run: |
+          node -e "
+            const fs = require('fs');
+            const matter = require('gray-matter');
+            const posts = fs.readdirSync('posts')
+              .filter(f => f.endsWith('.md'))
+              .map(f => {
+                const content = fs.readFileSync('posts/' + f, 'utf8');
+                const { data } = matter(content);
+                return {
+                  title: data.title,
+                  date: data.date,
+                  slug: data.slug || f.replace(/\.md$/, ''),
+                  cover: data.cover || '',
+                  description: data.description || ''
+                };
+              });
+            fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
+          "
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add posts.json
+          git commit -m "🤖 Auto-generate posts.json" || echo "No changes"
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
