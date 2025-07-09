@@ -3,7 +3,7 @@ name: Generate posts.json
 on:
   push:
     paths:
-      - 'posts/**/*.md'
+      - 'posts/**.md'
   workflow_dispatch:
 
 jobs:
@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: 📥 Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: 🧰 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install gray-matter
+      - name: 📦 Install gray-matter
         run: npm install gray-matter
 
-      - name: Generate posts.json
+      - name: 🛠️ Generate posts.json
         run: |
           node -e "
             const fs = require('fs');
@@ -43,7 +43,7 @@ jobs:
             fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
           "
 
-      - name: Commit and Push
+      - name: 🚀 Commit and Push posts.json
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
