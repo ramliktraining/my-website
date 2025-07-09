@@ -3,12 +3,10 @@ backend:
   repo: ramliktraining/my-website
   branch: main
   auth_scope: repo
-  client_id: Ov23liVUa83MSMapCniY
+  client_id: Ov23liVUa83MSMapCniY 🔁 Replace this with your real GitHub OAuth Client ID
   
-  
-
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images/uploads" # Where images are stored in repo
+public_folder: "/images/uploads" # How images are referenced in HTML
 
 collections:
   - name: "blog"
