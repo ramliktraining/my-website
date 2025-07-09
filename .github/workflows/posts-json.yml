@@ -1,13 +1,13 @@
-name: Generate losts.json
+name: Generate posts.json
 
 on:
   push:
     paths:
-      - 'losts/**.md'
+      - 'posts/**.md'
   workflow_dispatch:
 
-  jobs:
-  generate-losts-json:
+jobs:
+  generate-posts-json:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,15 +22,15 @@ on:
       - name: Install gray-matter
         run: npm install gray-matter
 
-      - name: Generate losts.json
+      - name: Generate posts.json
         run: |
           node -e "
             const fs = require('fs');
             const matter = require('gray-matter');
-            const losts = fs.readdirSync('losts')
+            const posts = fs.readdirSync('posts')
               .filter(f => f.endsWith('.md'))
               .map(f => {
-                const content = fs.readFileSync('losts/' + f, 'utf8');
+                const content = fs.readFileSync('posts/' + f, 'utf8');
                 const { data } = matter(content);
                 return {
                   title: data.title,
@@ -40,7 +40,7 @@ on:
                   description: data.description || ''
                 };
               });
-            fs.writeFileSync('losts.json', JSON.stringify(losts, null, 2));
+            fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
           "
 
       - name: Commit and Push
@@ -50,6 +50,6 @@ on:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${PERSONAL_TOKEN}@github.com/${{ github.repository }}
-          git add losts.json
-          git commit -m "🤖 Auto-generate losts.json" || echo "No changes"
+          git add posts.json
+          git commit -m "🤖 Auto-generate posts.json" || echo "No changes"
           git push origin HEAD:main
