@@ -1,16 +1,21 @@
 backend:
+  name: github
+  repo: ramliktraining/my-website
   name: git-gateway
   branch: main
+  
+  auth_scope: repo
+  client_id: Ov23liVUa83MSMapCniY 🔁 Replace this with your real GitHub OAuth Client ID
 
-media_folder: "images/uploads"
-public_folder: "/images/uploads"
+media_folder: "images/uploads" # Where images are stored in repo
+public_folder: "/images/uploads" # How images are referenced in HTML
 
 collections:
   - name: "blog"
     label: "Blog Posts"
     folder: "posts"
     create: true
-    slug: "{{slug}}"
+    slug: "{{slug}}" # this auto-generates the file name from the title
     fields:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "date", label: "Date", widget: "datetime" }
@@ -18,3 +23,5 @@ collections:
       - { name: "description", label: "Short Description", widget: "text" }
       - { name: "cover", label: "Cover Image", widget: "image", required: false }
       - { name: "body", label: "Body", widget: "markdown" }
+
+
