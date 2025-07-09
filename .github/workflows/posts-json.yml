@@ -1,36 +1,27 @@
-name: 🔄 Generate posts.json
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
 
-on:
-  push:
-    paths:
-      - "posts/**.md"  # Trigger only when blog posts are added/updated
-  workflow_dispatch:    # Allow manual run from GitHub UI
+const postsDir = path.join(__dirname, "../posts");
+const outputFile = path.join(__dirname, "../posts.json");
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout repository
-        uses: actions/checkout@v3
+const posts = [];
 
-      - name: 🔧 Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+fs.readdirSync(postsDir).forEach((file) => {
+  if (file.endsWith(".md")) {
+    const filePath = path.join(postsDir, file);
+    const fileContents = fs.readFileSync(filePath, "utf8");
+    const { data } = matter(fileContents);
 
-      - name: 📦 Install dependencies
-        run: npm install
+    posts.push({
+      title: data.title || "Untitled",
+      date: data.date || "",
+      description: data.description || "",
+      slug: file.replace(/\.md$/, ""),
+      cover: data.cover || "",
+    });
+  }
+});
 
-      - name: 🛠 Generate posts.json
-        run: node scripts/generate-posts-json.js
-
-      - name: ✅ Commit & push posts.json
-        env:
-          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        run: |
-          git config --global user.name "Ramlik Auto Bot"
-          git config --global user.email "ramlik-bot@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${TOKEN}@github.com/ramliktraining/my-website.git
-          git add posts.json
-          git commit -m "🤖 Auto-generate posts.json" || echo "No changes to commit"
-          git push
+fs.writeFileSync(outputFile, JSON.stringify(posts, null, 2));
+console.log("✅ posts.json generated!");
