@@ -1,8 +1,9 @@
 name: Generate posts.json
+
 on:
   push:
     paths:
-      - 'posts/**.md'
+      - 'posts/**/*.md'
   workflow_dispatch:
 
 jobs:
