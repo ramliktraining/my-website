@@ -6,7 +6,7 @@ on:
       - 'posts/**.md'
   workflow_dispatch:
 
-  jobs:
+jobs:
   generate-posts-json:
     runs-on: ubuntu-latest
 
