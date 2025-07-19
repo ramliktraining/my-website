@@ -13,6 +13,6 @@ Here’s what I’ve set up:
 
 * 🔥 Fast static site hosted on GitHub Pages
 * ⚙️ CMS with real-time editing
-* 🧠 Clean UI and markdown support
+* 🧠 Clean UI and markdown support 
 
 Stay tuned for more!
