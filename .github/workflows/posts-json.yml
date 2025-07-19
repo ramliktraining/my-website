@@ -1,67 +1,32 @@
 name: Generate posts.json
+  run: |
+    node <<'EOF'
+    const fs = require('fs');
+    const matter = require('gray-matter');
 
-on:
-  push:
-    paths:
-      - "posts/**.md"
-  workflow_dispatch:
+    if (!fs.existsSync('posts')) {
+      console.log("No posts directory yet, creating empty posts.json");
+      fs.writeFileSync('posts.json', '[]');
+      process.exit(0);
+    }
 
-permissions:
-  contents: write   # IMPORTANT: lets GITHUB_TOKEN push
+    const files = fs.readdirSync('posts').filter(f => f.endsWith('.md'));
+    const posts = files.map(f => {
+      const raw = fs.readFileSync(`posts/${f}`, 'utf8');
+      const { data } = matter(raw);
+      return {
+        title: data.title || f,
+        date: data.date ? String(data.date) : '',
+        slug: data.slug || f.replace(/\.md$/, ''),
+        cover: data.cover || '',
+        description: data.description || data.excerpt || ''
+      };
+    }).sort((a, b) => {
+      const dateA = String(a.date || "");
+      const dateB = String(b.date || "");
+      return dateB.localeCompare(dateA);
+    });
 
-jobs:
-  generate-posts-json:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          persist-credentials: true  # we want push with GITHUB_TOKEN
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install gray-matter
-        run: npm install gray-matter
-
-      - name: Build posts.json
-        run: |
-          node <<'EOF'
-          const fs = require('fs');
-          const matter = require('gray-matter');
-
-          if (!fs.existsSync('posts')) {
-            console.log("No posts directory yet, creating empty posts.json");
-            fs.writeFileSync('posts.json', '[]');
-            process.exit(0);
-          }
-
-          const files = fs.readdirSync('posts').filter(f => f.endsWith('.md'));
-          const posts = files.map(f => {
-            const raw = fs.readFileSync(`posts/${f}`, 'utf8');
-            const { data } = matter(raw);
-            return {
-              title: data.title || f,
-              date: data.date || '',
-              slug: data.slug || f.replace(/\.md$/, ''),
-              cover: data.cover || '',
-              description: data.description || data.excerpt || ''
-            };
-          }).sort((a,b) => (b.date||'').localeCompare(a.date||''));
-          fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
-          console.log("Generated posts.json with", posts.length, "entries");
-          EOF
-
-      - name: Commit & Push (if changed)
-        run: |
-          if git diff --quiet posts.json; then
-            echo "No changes in posts.json"
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts.json
-          git commit -m "🤖 Auto-generate posts.json"
-          git push
+    fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
+    console.log("Generated posts.json with", posts.length, "entries");
+    EOF
