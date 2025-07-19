@@ -3,53 +3,65 @@ name: Generate posts.json
 on:
   push:
     paths:
-      - 'posts/**.md'
+      - "posts/**.md"
   workflow_dispatch:
+
+permissions:
+  contents: write   # IMPORTANT: lets GITHUB_TOKEN push
 
 jobs:
   generate-posts-json:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 📦 Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true  # we want push with GITHUB_TOKEN
 
-      - name: 🧰 Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 📥 Install gray-matter
+      - name: Install gray-matter
         run: npm install gray-matter
 
-      - name: 🔁 Generate posts.json
+      - name: Build posts.json
         run: |
-          node -e "
-            const fs = require('fs');
-            const matter = require('gray-matter');
-            const posts = fs.readdirSync('posts')
-              .filter(f => f.endsWith('.md'))
-              .map(f => {
-                const content = fs.readFileSync('posts/' + f, 'utf8');
-                const { data } = matter(content);
-                return {
-                  title: data.title,
-                  date: data.date,
-                  slug: data.slug || f.replace(/\.md$/, ''),
-                  cover: data.cover || '',
-                  description: data.description || ''
-                };
-              });
-            fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
-          "
+          node <<'EOF'
+          const fs = require('fs');
+          const matter = require('gray-matter');
 
-      - name: ✅ Commit and Push posts.json
-        env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          if (!fs.existsSync('posts')) {
+            console.log("No posts directory yet, creating empty posts.json");
+            fs.writeFileSync('posts.json', '[]');
+            process.exit(0);
+          }
+
+          const files = fs.readdirSync('posts').filter(f => f.endsWith('.md'));
+          const posts = files.map(f => {
+            const raw = fs.readFileSync(`posts/${f}`, 'utf8');
+            const { data } = matter(raw);
+            return {
+              title: data.title || f,
+              date: data.date || '',
+              slug: data.slug || f.replace(/\.md$/, ''),
+              cover: data.cover || '',
+              description: data.description || data.excerpt || ''
+            };
+          }).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+          fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
+          console.log("Generated posts.json with", posts.length, "entries");
+          EOF
+
+      - name: Commit & Push (if changed)
         run: |
+          if git diff --quiet posts.json; then
+            echo "No changes in posts.json"
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${PERSONAL_TOKEN}@github.com/${{ github.repository }}
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add posts.json
-          git commit -m "🤖 Auto-generate posts.json" || echo "No changes"
-          git push origin HEAD:main
+          git commit -m "🤖 Auto-generate posts.json"
+          git push
