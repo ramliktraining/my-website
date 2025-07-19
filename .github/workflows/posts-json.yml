@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repository
+      - name: 📦 Checkout repo
         uses: actions/checkout@v3
 
       - name: 🧰 Setup Node.js
@@ -19,10 +19,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: 📦 Install gray-matter
+      - name: 📥 Install gray-matter
         run: npm install gray-matter
 
-      - name: 🛠️ Generate posts.json
+      - name: 🔁 Generate posts.json
         run: |
           node -e "
             const fs = require('fs');
@@ -43,7 +43,7 @@ jobs:
             fs.writeFileSync('posts.json', JSON.stringify(posts, null, 2));
           "
 
-      - name: 🚀 Commit and Push posts.json
+      - name: ✅ Commit and Push posts.json
         env:
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
