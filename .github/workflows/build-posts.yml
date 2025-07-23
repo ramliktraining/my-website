@@ -45,18 +45,18 @@ jobs:
             const slug = data.slug || file.replace(/\.md$/, "");
             const htmlContent = marked(content);
             const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${data.title || slug}</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-  <h1>${data.title || slug}</h1>
-  <article>${htmlContent}</article>
-</body>
-</html>`;
+          <html lang='en'>
+          <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>${data.title || slug}</title>
+            <link rel='stylesheet' href='../style.css'>
+          </head>
+          <body>
+            <h1>${data.title || slug}</h1>
+            <article>${htmlContent}</article>
+          </body>
+          </html>`;
             fs.writeFileSync(`${outputDir}/${slug}.html`, html);
             console.log("Generated:", slug + ".html");
           });
