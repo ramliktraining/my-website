@@ -5,37 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog - Ramlik's Website</title>
 
-  <!-- SEO Meta -->
+  <!-- ✅ SEO Meta -->
   <meta name="description" content="Ramlik's blog - web development, UI/UX design, and creative tech articles." />
   <meta name="keywords" content="Ramlik, blog, web design, frontend, developer blog, tutorials" />
   <meta name="author" content="Ramlik" />
   <meta name="robots" content="index, follow" />
 
-  <!-- Styles & Libraries -->
+  <!-- ✅ Open Graph -->
+  <meta property="og:title" content="Ramlik's Blog" />
+  <meta property="og:description" content="Explore web development insights, portfolio breakdowns, and tutorials by Ramlik." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ramliktraining.github.io/my-website/blog.html" />
+  <meta property="og:image" content="https://ramliktraining.github.io/my-website/images/social-share.png" />
+
+  <!-- ✅ Styles & Libraries -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
+
 <body data-barba="wrapper">
-  <!-- Header -->
+  <!-- ✅ Dynamic Header -->
   <div id="header-placeholder"></div>
 
-  <!-- Blog Section -->
+  <!-- ✅ Main Blog Content -->
   <main data-barba="container" data-barba-namespace="blog">
     <section class="fade-in" data-aos="fade-up">
       <h1>📝 My Blog</h1>
       <p>Explore updates, tutorials, and behind-the-scenes of my developer journey.</p>
-      <div id="blog-list" class="blog-list"></div>
+      <div class="blog-list" id="blog-list"></div>
+      
+      <!-- ✅ Blog Post Grid -->
+      <div class="blog-list">
+        <!-- Blog Card 1 --> 
+       <article class="blog-preview">
+          <h2><a href="blog-post.html">🚀 How I Built My Portfolio as a PWA</a></h2>
+          <p>A full breakdown of how I made this website installable, offline-ready, and lightning fast using PWA and GitHub Pages.</p>
+          <a href="blog-post.html" class="cta-button">Read More</a>
+        </article>
+
+        <!-- Blog Card 2  -->
+      <article class="blog-preview">
+          <h2><a href="blog-post-seo.html">📈 SEO Optimization Tips for Developers</a></h2>
+          <p>Practical tips and meta tag examples to help boost your site’s visibility on Google.</p>
+          <a href="blog-post-seo.html" class="cta-button">Read More</a>
+        </article>
+
+        <!-- Blog Card 3 -->
+        <article class="blog-preview">
+          <h2><a href="blog-post-barba.html">✨ Page Transitions with barba.js</a></h2>
+          <p>Learn how to make your website feel like an app using SPA-like transitions with Barba.js.</p>
+          <a href="blog-post-barba.html" class="cta-button">Read More</a>
+        </article>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ✅ Dynamic Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Scripts -->
+  <!-- ✅ Scripts -->
   <script src="load-header-footer.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init({ duration: 1000, once: true });</script>
+  <script> AOS.init({ duration: 1000, once: true }); </script>
   <script src="blog-list.js" defer></script>
+  
+  <!-- ✅ barba.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+  <script>
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) {
+          return gsap.to(data.current.container, { opacity: 0, duration: 0.5 });
+        },
+        enter(data) {
+          return gsap.from(data.next.container, { opacity: 0, duration: 0.5 });
+        }
+      }]
+    });
+  </script>
 </body>
 </html>
