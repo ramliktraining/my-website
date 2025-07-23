@@ -28,7 +28,8 @@ jobs:
       - name: Generate HTML from Markdown
         run: |
           mkdir -p blog-posts
-          echo 'const fs = require("fs");
+          cat << 'EOF' > build-posts.js
+          const fs = require("fs");
           const matter = require("gray-matter");
           const { marked } = require("marked");
           const postsDir = "posts";
@@ -41,7 +42,7 @@ jobs:
           files.forEach(file => {
             const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
             const { data, content } = matter(raw);
-            const slug = data.slug || file.replace(/\\.md$/, "");
+            const slug = data.slug || file.replace(/\.md$/, "");
             const htmlContent = marked(content);
             const html = `<!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,8 @@ jobs:
 </html>`;
             fs.writeFileSync(`${outputDir}/${slug}.html`, html);
             console.log("Generated:", slug + ".html");
-          });' > build-posts.js
+          });
+          EOF
           node build-posts.js
 
       - name: Commit and Push
