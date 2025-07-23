@@ -1,19 +1,20 @@
-name: Build Blog Posts
+name: Build Blog HTML
 
 on:
   push:
     paths:
-      - 'posts/**.md'
+      - "posts/**.md"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-posts:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -24,43 +25,45 @@ jobs:
       - name: Install Dependencies
         run: npm install gray-matter marked
 
-      - name: Convert Markdown to HTML
+      - name: Generate HTML from Markdown
         run: |
+          mkdir -p blog-posts
           node <<'EOF'
           const fs = require('fs');
-          const path = require('path');
           const matter = require('gray-matter');
           const { marked } = require('marked');
 
-          const inputDir = 'posts';
-          const outputDir = 'blog';
+          const postsDir = 'posts';
+          const outputDir = 'blog-posts';
 
+          if (!fs.existsSync(postsDir)) {
+            console.log("No posts directory found.");
+            process.exit(0);
+          }
+
+          const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.md'));
           if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
 
-          const files = fs.readdirSync(inputDir).filter(f => f.endsWith('.md'));
           files.forEach(file => {
-            const raw = fs.readFileSync(`${inputDir}/${file}`, 'utf8');
+            const raw = fs.readFileSync(`${postsDir}/${file}`, 'utf8');
             const { data, content } = matter(raw);
-            const htmlContent = `
-
+            const slug = data.slug || file.replace(/\.md$/, '');
+            const htmlContent = marked(content);
+            const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${data.title || 'Untitled Post'}</title>
+  <title>${data.title || slug}</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <article class="blog-post">
-    <h1>${data.title || file.replace('.md','')}</h1>
-    <p><em>${data.date || ''}</em></p>
-    ${marked(content)}
-  </article>
+  <h1>${data.title || slug}</h1>
+  <article>${htmlContent}</article>
 </body>
 </html>`;
-
-            fs.writeFileSync(`${outputDir}/${file.replace('.md', '.html')}`, htmlContent);
-            console.log(`Converted: ${file} -> ${file.replace('.md', '.html')}`);
+            fs.writeFileSync(`${outputDir}/${slug}.html`, html);
+            console.log("Generated:", slug + ".html");
           });
           EOF
 
@@ -68,6 +71,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/*.html
-          git commit -m "Auto-convert Markdown to HTML" || echo "No changes to commit"
+          git add blog-posts/
+          git commit -m "🚀 Auto-generate blog posts HTML" || echo "No changes"
           git push
