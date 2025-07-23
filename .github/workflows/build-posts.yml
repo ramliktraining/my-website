@@ -28,26 +28,20 @@ jobs:
       - name: Generate HTML from Markdown
         run: |
           mkdir -p blog-posts
-          node <<'EOF'
-          const fs = require('fs');
-          const matter = require('gray-matter');
-          const { marked } = require('marked');
+          echo 'const fs = require("fs");
+          const matter = require("gray-matter");
+          const { marked } = require("marked");
+          const postsDir = "posts";
+          const outputDir = "blog-posts";
 
-          const postsDir = 'posts';
-          const outputDir = 'blog-posts';
-
-          if (!fs.existsSync(postsDir)) {
-            console.log("No posts directory found.");
-            process.exit(0);
-          }
-
-          const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.md'));
+          if (!fs.existsSync(postsDir)) process.exit(0);
           if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
 
+          const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
           files.forEach(file => {
-            const raw = fs.readFileSync(`${postsDir}/${file}`, 'utf8');
+            const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
             const { data, content } = matter(raw);
-            const slug = data.slug || file.replace(/\.md$/, '');
+            const slug = data.slug || file.replace(/\\.md$/, "");
             const htmlContent = marked(content);
             const html = `<!DOCTYPE html>
 <html lang="en">
@@ -64,8 +58,8 @@ jobs:
 </html>`;
             fs.writeFileSync(`${outputDir}/${slug}.html`, html);
             console.log("Generated:", slug + ".html");
-          });
-          EOF
+          });' > build-posts.js
+          node build-posts.js
 
       - name: Commit and Push
         run: |
