@@ -3,39 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="dynamic-title">Loading...</title>
 
-  <!-- Dynamic SEO Meta -->
-  <meta name="description" id="meta-description" content="" />
-  <meta name="keywords" content="blog, web development, Ramlik, JavaScript, HTML, CSS" />
-  <meta name="author" content="Ramlik" />
-  <meta name="robots" content="index, follow" />
+  <!-- ✅ Dynamic SEO Meta Tags via blog-post.js -->
+<title id="dynamic-title">Loading...</title>
 
-  <!-- Open Graph -->
-  <meta property="og:title" id="og-title" content="" />
-  <meta property="og:description" id="og-description" content="" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" id="og-url" content="" />
-  <meta property="og:image" id="og-image" content="" />
+<meta name="description" id="meta-description" content="" />
+<meta name="keywords" content="blog, web development, Ramlik, JavaScript, HTML, CSS" />
+<meta name="author" content="Ramlik" />
+<meta name="robots" content="index, follow" />
 
-  <!-- Styles -->
+<!-- ✅ Open Graph -->
+<meta property="og:title" id="og-title" content="" />
+<meta property="og:description" id="og-description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" id="og-url" content="" />
+<meta property="og:image" id="og-image" content="" />
+
+<!-- ✅ Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" id="twitter-title" content="" />
+<meta name="twitter:description" id="twitter-description" content="" />
+<meta name="twitter:image" id="twitter-image" content="" />
+
+  <!-- ✅ Fonts / Icons / CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="manifest" href="manifest.json" />
+
 </head>
 <body data-barba="wrapper">
-  <!-- Header -->
+
+  <!-- ✅ Scroll Progress Bar -->
+ <!--  <div id="scroll-progress-bar"></div> -->
+
+  <!-- ✅ Header -->
   <div id="header-placeholder"></div>
 
-  <!-- Blog Post Content -->
+  <!-- ✅ Page Content (barba container) -->
   <main data-barba="container" data-barba-namespace="blog-post">
-    <article id="post-content" class="blog-post fade-in">Loading post...</article>
+    <article id="post-content" class="blog-post"></article>
+
+   <article class="blog-post">
+      <h1 data-aos="fade-down">How I Built My PWA Portfolio</h1>
+      <p class="meta" data-aos="fade-up" data-aos-delay="100">By Ramlik Mohamed • <time datetime="2025-06-18">June 18, 2025</time></p>
+
+      <section data-aos="fade-up" data-aos-delay="200">
+        <h2>1. Planning the Layout</h2>
+        <p>I began with a basic wireframe of my website’s structure: Home, About, Services, Portfolio, Contact. This helped shape content and layout priorities.</p>
+      </section>
+
+      <section data-aos="fade-up" data-aos-delay="300">
+        <h2>2. Making It Responsive</h2>
+        <p>Using media queries and flexible grid layouts, I ensured my site looked great across all screen sizes, from mobile to desktop.</p>
+      </section>
+
+      <section data-aos="fade-up" data-aos-delay="400">
+        <h2>3. Adding Modern Features</h2>
+        <ul>
+          <li>✅ Scroll animations with AOS</li>
+          <li>✅ Parallax hero with fade-ins</li>
+          <li>✅ Animated counters and typewriter effects</li>
+          <li>✅ SPA-like transitions using barba.js</li>
+          <li>✅ PWA manifest and service worker for installable app</li>
+        </ul>
+      </section>
+
+      <section data-aos="fade-up" data-aos-delay="500">
+        <h2>4. Hosting & Analytics</h2>
+        <p>I deployed my site on GitHub Pages, connected Google Analytics (GA4), and added social sharing meta tags for SEO visibility.</p>
+      </section>
+
+      <section class="cta-banner" data-aos="zoom-in" data-aos-delay="600">
+        <h2>Have a Project Idea?</h2>
+        <p>Let’s collaborate to bring it to life.</p>
+        <a href="contact.html" class="cta-button">Contact Me</a>
+      </section>
+    </article>
+
   </main>
 
-  <!-- Footer -->
+  <!-- ✅ Footer -->
   <div id="footer-placeholder"></div>
 
-  <!-- Scripts -->
+  <!-- ✅ JS Scripts -->
   <script src="load-header-footer.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1000, once: true });</script>
   <script src="blog-post.js" defer></script>
+
+  <!-- ✅ barba.js Page Transitions -->
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script>
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) {
+          return gsap.to(data.current.container, { opacity: 0, duration: 0.4 });
+        },
+        enter(data) {
+          return gsap.from(data.next.container, { opacity: 0, duration: 0.4 });
+        }
+      }]
+    });
+  </script>
+
+  <!-- ✅ Scroll Progress Bar Script -->
+  <!-- <script>
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('scroll-progress-bar');
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      bar.style.width = progress + '%';
+    });
+  </script> -->
+
 </body>
 </html>
