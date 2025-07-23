@@ -1,30 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get("slug");
+// blog-post.js
+const params = new URLSearchParams(window.location.search);
+const slug = params.get('slug');
 
-  fetch("https://ramliktraining.github.io/my-website/blog/posts.json")
+const container = document.getElementById('post-content');
+
+if (!slug) {
+  container.innerHTML = '<p>❌ Post not found.</p>';
+} else {
+  fetch('posts.json')
     .then(res => res.json())
     .then(posts => {
       const post = posts.find(p => p.slug === slug);
-      if (!post) return;
+      if (!post) {
+        container.innerHTML = '<p>❌ Post not found.</p>';
+        return;
+      }
 
-      // ✅ Update SEO meta tags
+      // Update SEO tags
       document.title = post.title;
-      document.getElementById("dynamic-title").textContent = post.title;
+      document.getElementById('meta-description').content = post.description;
+      document.getElementById('og-title').content = post.title;
+      document.getElementById('og-description').content = post.description;
+      document.getElementById('og-url').content = window.location.href;
+      document.getElementById('og-image').content = post.cover;
+      document.getElementById('twitter-title').content = post.title;
+      document.getElementById('twitter-description').content = post.description;
+      document.getElementById('twitter-image').content = post.cover;
 
-      document.getElementById("meta-description").setAttribute("content", post.description);
-      document.getElementById("og-title").setAttribute("content", post.title);
-      document.getElementById("og-description").setAttribute("content", post.description);
-      document.getElementById("og-url").setAttribute("content", window.location.href);
-      document.getElementById("og-image").setAttribute("content", post.coverImage || defaultCover);
-
-      document.getElementById("twitter-title").setAttribute("content", post.title);
-      document.getElementById("twitter-description").setAttribute("content", post.description);
-      document.getElementById("twitter-image").setAttribute("content", post.coverImage || defaultCover);
-
-      // ✅ Render content
-      document.querySelector(".blog-title").textContent = post.title;
-      document.querySelector(".blog-date").textContent = post.date;
-      document.querySelector(".blog-body").innerHTML = marked.parse(post.body);
+      // Render content
+      container.innerHTML = `
+        <h1>${post.title}</h1>
+        <p><em>${post.date}</em></p>
+        ${post.cover ? `<img src="${post.cover}" alt="${post.title}" style="max-width:100%;"/>` : ''}
+        <p>${post.description}</p>
+      `;
+    })
+    .catch(() => {
+      container.innerHTML = '<p>❌ Failed to load post.</p>';
     });
-});
+}
