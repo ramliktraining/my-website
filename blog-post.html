@@ -1,19 +1,70 @@
-const urlParams = new URLSearchParams(window.location.search);
-const slug = urlParams.get('slug');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="dynamic-title">Loading...</title>
 
-fetch('posts.json')
-  .then(res => res.json())
-  .then(posts => {
-    const post = posts.find(p => p.slug === slug);
-    if (post) {
-      document.title = post.title;
-      document.getElementById('post-content').innerHTML = `
-        <h1>${post.title}</h1>
-        <p><em>Published: ${post.date}</em></p>
-        <img src="${post.cover}" alt="${post.title}" />
-        <p>${post.description}</p>
-      `;
-    } else {
-      document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
-    }
-  });
+  <!-- ✅ SEO Meta -->
+  <meta name="description" id="meta-description" content="" />
+  <meta name="keywords" content="blog, web development, Ramlik, JavaScript, HTML, CSS" />
+  <meta name="author" content="Ramlik" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:title" id="og-title" content="" />
+  <meta property="og:description" id="og-description" content="" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" id="og-url" content="" />
+  <meta property="og:image" id="og-image" content="" />
+
+  <!-- ✅ Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" id="twitter-title" content="" />
+  <meta name="twitter:description" id="twitter-description" content="" />
+  <meta name="twitter:image" id="twitter-image" content="" />
+
+  <!-- ✅ Fonts / Icons / CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+
+<body data-barba="wrapper">
+  <!-- ✅ Header -->
+  <div id="header-placeholder"></div>
+
+  <!-- ✅ Page Content -->
+  <main data-barba="container" data-barba-namespace="blog-post">
+    <article id="post-content" class="blog-post">
+      <p>Loading post...</p>
+    </article>
+  </main>
+
+  <!-- ✅ Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- ✅ JS Scripts -->
+  <script src="load-header-footer.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script> AOS.init({ duration: 1000, once: true }); </script>
+  <script src="blog-post.js" defer></script>
+
+  <!-- ✅ barba.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+  <script>
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) {
+          return gsap.to(data.current.container, { opacity: 0, duration: 0.4 });
+        },
+        enter(data) {
+          return gsap.from(data.next.container, { opacity: 0, duration: 0.4 });
+        }
+      }]
+    });
+  </script>
+</body>
+</html>
