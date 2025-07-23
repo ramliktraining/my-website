@@ -42,7 +42,7 @@ jobs:
             const raw = fs.readFileSync(`${inputDir}/${file}`, 'utf8');
             const { data, content } = matter(raw);
             const htmlContent = `
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
