@@ -32,13 +32,12 @@
   <!-- ✅ Main Blog Content -->
   <main data-barba="container" data-barba-namespace="blog">
     <section class="fade-in" data-aos="fade-up">
-  <h1>📝 My Blog</h1>
-  <p>Explore updates, tutorials, and behind-the-scenes of my developer journey.</p>
-  
-  <!-- Blog posts will load dynamically here -->
-  <div class="blog-list" id="blog-list"></div>
-</section>
-
+      <h1>📝 My Blog</h1>
+      <p>Explore updates, tutorials, and behind-the-scenes of my developer journey.</p>
+      <div class="blog-list" id="blog-list">
+        <p>Loading blog posts...</p>
+      </div>
+    </section>
   </main>
 
   <!-- ✅ Dynamic Footer -->
@@ -49,8 +48,7 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script> AOS.init({ duration: 1000, once: true }); </script>
   <script src="blog-list.js" defer></script>
-  
-  
+
   <!-- ✅ barba.js -->
   <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
   <script>
