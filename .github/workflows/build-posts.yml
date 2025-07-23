@@ -1,0 +1,73 @@
+name: Build Blog Posts
+
+on:
+  push:
+    paths:
+      - 'posts/**.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install gray-matter marked
+
+      - name: Convert Markdown to HTML
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const matter = require('gray-matter');
+          const { marked } = require('marked');
+
+          const inputDir = 'posts';
+          const outputDir = 'blog';
+
+          if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+
+          const files = fs.readdirSync(inputDir).filter(f => f.endsWith('.md'));
+          files.forEach(file => {
+            const raw = fs.readFileSync(`${inputDir}/${file}`, 'utf8');
+            const { data, content } = matter(raw);
+            const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${data.title || 'Untitled Post'}</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <article class="blog-post">
+    <h1>${data.title || file.replace('.md','')}</h1>
+    <p><em>${data.date || ''}</em></p>
+    ${marked(content)}
+  </article>
+</body>
+</html>`;
+
+            fs.writeFileSync(`${outputDir}/${file.replace('.md', '.html')}`, htmlContent);
+            console.log(`Converted: ${file} -> ${file.replace('.md', '.html')}`);
+          });
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog/*.html
+          git commit -m "Auto-convert Markdown to HTML" || echo "No changes to commit"
+          git push
