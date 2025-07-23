@@ -1,7 +1,7 @@
 ---
 title: Hello
 date: 2025-07-23T11:43:33.419Z
-slug: hello-world
+slug: hello
 description: '"This is my first blog post using GitHub Actions!"'
 ---
 # Welcome to My Blog
