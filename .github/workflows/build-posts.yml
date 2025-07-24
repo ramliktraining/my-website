@@ -1,4 +1,4 @@
-name: Build Blog HTML
+name: Build Blog HTML and posts.json
 
 on:
   push:
@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -25,48 +27,69 @@ jobs:
       - name: Install Dependencies
         run: npm install gray-matter marked
 
-      - name: Generate HTML from Markdown
+      - name: Generate blog-posts/ and posts.json
         run: |
           mkdir -p blog-posts
-          cat << 'EOF' > build-posts.js
-          const fs = require("fs");
-          const matter = require("gray-matter");
-          const { marked } = require("marked");
-          const postsDir = "posts";
-          const outputDir = "blog-posts";
+          echo 'const fs = require("fs");
+const matter = require("gray-matter");
+const { marked } = require("marked");
 
-          if (!fs.existsSync(postsDir)) process.exit(0);
-          if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+const postsDir = "posts";
+const outputDir = "blog-posts";
+const jsonFile = "posts.json";
 
-          const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
-          files.forEach(file => {
-            const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
-            const { data, content } = matter(raw);
-            const slug = data.slug || file.replace(/\.md$/, "");
-            const htmlContent = marked(content);
-            const html = `<!DOCTYPE html>
-          <html lang='en'>
-          <head>
-            <meta charset='UTF-8'>
-            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>${data.title || slug}</title>
-            <link rel='stylesheet' href='../style.css'>
-          </head>
-          <body>
-            <h1>${data.title || slug}</h1>
-            <article>${htmlContent}</article>
-          </body>
-          </html>`;
-            fs.writeFileSync(`${outputDir}/${slug}.html`, html);
-            console.log("Generated:", slug + ".html");
-          });
-          EOF
+if (!fs.existsSync(postsDir)) process.exit(0);
+if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+
+const posts = [];
+
+const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
+files.forEach(file => {
+  const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
+  const { data, content } = matter(raw);
+  const slug = data.slug || file.replace(/\.md$/, "");
+  const htmlContent = marked(content);
+
+  // Create HTML
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${data.title || slug}</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <h1>${data.title || slug}</h1>
+  <article>${htmlContent}</article>
+  <p><a href="../blog.html">← Back to Blog</a></p>
+</body>
+</html>`;
+  fs.writeFileSync(`${outputDir}/${slug}.html`, html);
+  console.log("Generated:", slug + ".html");
+
+  // Add to JSON list
+  posts.push({
+    title: data.title || slug,
+    slug: slug,
+    date: data.date || null,
+    summary: data.summary || "",
+    cover: data.cover || ""
+  });
+});
+
+// Sort by date desc if available
+posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+fs.writeFileSync(jsonFile, JSON.stringify(posts, null, 2));
+' > build-posts.js
+
           node build-posts.js
 
       - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog-posts/
-          git commit -m "🚀 Auto-generate blog posts HTML" || echo "No changes"
+          git add blog-posts/ posts.json
+          git diff --cached --quiet || git commit -m "🤖 Auto-generate blog-posts and posts.json"
+          git pull --rebase origin main || true
           git push
