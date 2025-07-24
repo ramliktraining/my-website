@@ -1,31 +1,8 @@
 ---
-title: Hello
+title: Mohamed Ali
 date: 2025-07-24T04:54:02.097Z
-slug: Hello
-description: Hello
+slug: Mohamed
+description: Mohamed Ali - Test
+cover: /images/uploads/logo.png
 ---
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
-
-Hello
+Mohamed Ali i tes adding photo
