@@ -1,16 +1,16 @@
 [
   {
-    "title": "🚀 How I Built My Portfolio as a PWA",
-    "date": "2025-06-18",
-    "slug": "pwa-portfolio",
-    "cover": "https://ramliktraining.github.io/my-website/images/blog-pwa.png",
-    "description": "A full breakdown of how I made this website installable, offline-ready, and lightning fast using PWA and GitHub Pages."
+    "title": "Hello",
+    "date": "Thu Jul 24 2025 04:54:02 GMT+0000 (Coordinated Universal Time)",
+    "slug": "Hello",
+    "cover": "",
+    "description": "Hello"
   },
   {
-    "title": "📈 SEO Optimization Tips for Developers",
-    "date": "2025-06-25",
-    "slug": "seo-tips",
-    "cover": "https://ramliktraining.github.io/my-website/images/blog-seo.png",
-    "description": "Practical tips and meta tag examples to help boost your site’s visibility on Google and improve performance."
+    "title": "Hello",
+    "date": "Thu Jul 24 2025 04:33:20 GMT+0000 (Coordinated Universal Time)",
+    "slug": "Hello",
+    "cover": "",
+    "description": "Hello"
   }
 ]
