@@ -41,36 +41,4 @@ jobs:
           if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
 
           const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
-          files.forEach(file => {
-            const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
-            const { data, content } = matter(raw);
-            const slug = data.slug || file.replace(/\.md$/, "");
-            const htmlContent = marked(content);
-            const html = `<!DOCTYPE html>
-          <html lang='en'>
-          <head>
-            <meta charset='UTF-8'>
-            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>${data.title || slug}</title>
-            <link rel='stylesheet' href='../style.css'>
-          </head>
-          <body>
-            <h1>${data.title || slug}</h1>
-            <article>${htmlContent}</article>
-            <p><a href="../blog.html">← Back to Blog</a></p>
-          </body>
-          </html>`;
-            fs.writeFileSync(`${outputDir}/${slug}.html`, html);
-            console.log("Generated:", slug + ".html");
-          });
-          EOF
-          node build-posts.js
-
-      - name: Commit and Push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
-          git add blog-posts/
-          git commit -m "🚀 Auto-generate blog posts HTML" || echo "No changes"
-          git push
+          files.forEach(file
