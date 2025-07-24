@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -30,39 +28,39 @@ jobs:
       - name: Generate HTML from Markdown
         run: |
           mkdir -p blog-posts
-          echo 'const fs = require("fs");
-const matter = require("gray-matter");
-const { marked } = require("marked");
-const postsDir = "posts";
-const outputDir = "blog-posts";
+          cat << 'EOF' > build-posts.js
+          const fs = require("fs");
+          const matter = require("gray-matter");
+          const { marked } = require("marked");
+          const postsDir = "posts";
+          const outputDir = "blog-posts";
 
-if (!fs.existsSync(postsDir)) process.exit(0);
-if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
+          if (!fs.existsSync(postsDir)) process.exit(0);
+          if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir);
 
-const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
-files.forEach(file => {
-  const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
-  const { data, content } = matter(raw);
-  const slug = data.slug || file.replace(/\.md$/, "");
-  const htmlContent = marked(content);
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${data.title || slug}</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
-  <h1>${data.title || slug}</h1>
-  <article>${htmlContent}</article>
-  <p><a href="../blog.html">← Back to Blog</a></p>
-</body>
-</html>`;
-  fs.writeFileSync(`${outputDir}/${slug}.html`, html);
-  console.log("Generated:", slug + ".html");
-});
-' > build-posts.js
+          const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
+          files.forEach(file => {
+            const raw = fs.readFileSync(`${postsDir}/${file}`, "utf8");
+            const { data, content } = matter(raw);
+            const slug = data.slug || file.replace(/\.md$/, "");
+            const htmlContent = marked(content);
+            const html = `<!DOCTYPE html>
+          <html lang='en'>
+          <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <title>${data.title || slug}</title>
+            <link rel='stylesheet' href='../style.css'>
+          </head>
+          <body>
+            <h1>${data.title || slug}</h1>
+            <article>${htmlContent}</article>
+          </body>
+          </html>`;
+            fs.writeFileSync(`${outputDir}/${slug}.html`, html);
+            console.log("Generated:", slug + ".html");
+          });
+          EOF
           node build-posts.js
 
       - name: Commit and Push
@@ -70,6 +68,5 @@ files.forEach(file => {
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add blog-posts/
-          git diff --cached --quiet || git commit -m "🚀 Auto-generate blog posts HTML"
-          git pull --rebase origin main || true
+          git commit -m "🚀 Auto-generate blog posts HTML" || echo "No changes"
           git push
