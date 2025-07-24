@@ -67,6 +67,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main || true
           git add posts.json
           git commit -m "🤖 Auto-generate posts.json"
           git push
