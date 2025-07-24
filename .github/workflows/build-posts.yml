@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -55,6 +57,7 @@ jobs:
           <body>
             <h1>${data.title || slug}</h1>
             <article>${htmlContent}</article>
+            <p><a href="../blog.html">← Back to Blog</a></p>
           </body>
           </html>`;
             fs.writeFileSync(`${outputDir}/${slug}.html`, html);
@@ -67,6 +70,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add blog-posts/
           git commit -m "🚀 Auto-generate blog posts HTML" || echo "No changes"
           git push
