@@ -5,10 +5,10 @@ fetch('posts.json')
     const blogList = document.getElementById('blog-list');
     blogList.innerHTML = posts.map(post => `
       <article class="blog-preview">
-        <h2><a href="blog-post.html?slug=${post.slug}">${post.title}</a></h2>
+        <h2><a href="blog-posts/${post.slug}.html">${post.title}</a></h2>
         <p>${post.description || ''}</p>
         <p><small>${post.date || ''}</small></p>
-        <a href="blog-post.html?slug=${post.slug}" class="cta-button">Read More</a>
+        <a href="blog-posts/${post.slug}.html" class="cta-button">Read More</a>
       </article>
     `).join('');
   })
