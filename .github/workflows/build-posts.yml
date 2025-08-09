@@ -30,6 +30,7 @@ jobs:
       - name: Generate blog-posts and posts.json
         run: |
           mkdir -p blog-posts
+
           cat << 'EOF' > build-posts.js
           const fs = require("fs");
           const matter = require("gray-matter");
@@ -50,26 +51,33 @@ jobs:
             const { data, content } = matter(raw);
             const slug = data.slug || file.replace(/\.md$/, "");
             const htmlContent = marked(content);
+
             const html = `<!DOCTYPE html>
           <html lang="en">
           <head>
-          <meta charset="UTF-8">
-          <title>${data.title || slug}</title>
-          <link rel="stylesheet" href="../style.css">
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${data.title || slug}</title>
+            <link rel="stylesheet" href="../style.css">
+            <script src="../load-header-footer.js" defer></script>
           </head>
           <body>
-          <h1>${data.title || slug}</h1>
-          <article>${htmlContent}</article>
-          <p><a href="../blog.html">← Back to Blog</a></p>
+            <div id="header-placeholder"></div>
+            <main>
+              <p><a href="../blog.html">← Back to Blog</a></p>
+              <h1>${data.title || slug}</h1>
+              <article>${htmlContent}</article>
+            </main>
+            <div id="footer-placeholder"></div>
           </body>
           </html>`;
+
             fs.writeFileSync(`${outputDir}/${slug}.html`, html);
             posts.push({
               title: data.title || slug,
               slug,
               date: data.date || "",
-              summary: data.summary || "",
-              cover: data.cover || ""
+              description: data.description || ""
             });
           });
 
