@@ -1,7 +1,7 @@
 ---
-title: Effectivenow
+title: Effective_09
 date: 2025-07-24T09:25:21.635Z
-slug: Effectivenow
+slug: Effective_09
 description: Discover practical strategies to maintain focus and productivity
   while working from home. From creating a dedicated workspace to managing
   distractions, these tips will help you optimize your remote workday.now
